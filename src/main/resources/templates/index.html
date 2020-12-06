@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+<div th:switch="${apps}" class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 th:case="null">Main</h1>
+
+            <h4>Options</h4>
+            <div sec:authorize="hasRole('admin')" >
+                <p>
+                    <a  href="/Institution/" class="btn btn-primary"> Go to Institutions</a>
+                </p>
+            </div>
+
+
+            <div sec:authorize="hasRole('admin')" >
+                <p>
+                    <a  href="/PhysicalSpaceType/" class="btn btn-primary">
+                        Go to type of physical space</a>
+                </p>
+
+            </div>
+            <div sec:authorize="hasRole('Operator')" >
+                <p>
+                    <a href="/Campus/" class="btn btn-primary">Go to campus</a>
+                </p>
+            </div>
+
+            <div sec:authorize="hasRole('Operator')" >
+                <p>
+                    <a href="/PhysicalSpace/" class="btn btn-primary">
+                        Go to physical space </a>
+                </p>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div>
+        <a href="javascript: document.logoutForm.submit()" role="menuitem"><i class="fas fa-chevron-left ml-2"></i>
+            Logout</a>
+
+        <form name="logoutForm" th:action="@{/logout}" method="post"
+              th:hidden="true">
+            <input hidden type="submit" value="Sign Out" />
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
