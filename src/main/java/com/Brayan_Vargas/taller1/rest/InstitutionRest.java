@@ -12,6 +12,10 @@ public class InstitutionRest {
 
     private InstitutionService institutionService;
 
+    public InstitutionRest(InstitutionService institutionService) {
+        this.institutionService = institutionService;
+    }
+
     @GetMapping("/institution")
     public Iterable<Institution> loadInstitutions(){
         return institutionService.findAll();

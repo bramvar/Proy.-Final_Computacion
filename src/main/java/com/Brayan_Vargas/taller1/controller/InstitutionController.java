@@ -23,11 +23,15 @@ public class InstitutionController {
     //InstitutionService institutionService;
     private InstitutionDelegate institutionDelegate;
 
+    public InstitutionController(InstitutionDelegate institutionDelegate) {
+        this.institutionDelegate = institutionDelegate;
+    }
+
     @PreAuthorize("hasRole('admin')")
     @GetMapping("/Institution/")
     public String indexIntitution(Model model){
-        if(institutionDelegate.GET_Institutions().iterator().hasNext())
-             model.addAttribute("institutions",institutionDelegate.GET_Institutions());
+        if(institutionDelegate.GET_Institutions("s").iterator().hasNext())
+             model.addAttribute("institutions",institutionDelegate.GET_Institutions("s"));
         return"Institution/index";
     }
 

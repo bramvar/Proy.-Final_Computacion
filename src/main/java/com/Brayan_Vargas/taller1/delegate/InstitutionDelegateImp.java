@@ -2,11 +2,10 @@ package com.Brayan_Vargas.taller1.delegate;
 
 import com.Brayan_Vargas.taller1.model.Institution;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -31,10 +30,21 @@ public class InstitutionDelegateImp implements InstitutionDelegate {
     }
 
     @Override
-    public Iterable<Institution> GET_Institutions() {
+    public Iterable<Institution> GET_Institutions(String token) {
+        String url = SERVER+"institution";
+        MultiValueMap<String, String > headers = new LinkedMultiValueMap<String, String>();
+        headers.add("Authorization","bearer "+token);
+        List<Institution> inst=null;
+        ResponseEntity<Institution[]> res= restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers),Institution[].class, inst);
+
+        inst= Arrays.asList(res.getBody());
+
+        return inst;
+
+        /*
         Institution[] institutions= restTemplate.getForObject(SERVER+"institution",Institution[].class);
         List<Institution> instList= Arrays.asList(institutions);
-        return instList;
+        return instList;*/
     }
 
     @Override

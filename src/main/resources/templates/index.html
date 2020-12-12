@@ -24,27 +24,27 @@
             <h4>Options</h4>
             <div sec:authorize="hasRole('admin')" >
                 <p>
-                    <a  href="/Institution/" class="btn btn-primary"> Go to Institutions</a>
+                    <a  href="/frontapi/Institution/" class="btn btn-primary"> Go to Institutions</a>
                 </p>
             </div>
 
 
             <div sec:authorize="hasRole('admin')" >
                 <p>
-                    <a  href="/PhysicalSpaceType/" class="btn btn-primary">
+                    <a  href="/frontapi/PhysicalSpaceType/" class="btn btn-primary">
                         Go to type of physical space</a>
                 </p>
 
             </div>
             <div sec:authorize="hasRole('Operator')" >
                 <p>
-                    <a href="/Campus/" class="btn btn-primary">Go to campus</a>
+                    <a href="/frontapi/Campus/" class="btn btn-primary">Go to campus</a>
                 </p>
             </div>
 
             <div sec:authorize="hasRole('Operator')" >
                 <p>
-                    <a href="/PhysicalSpace/" class="btn btn-primary">
+                    <a href="/frontapi/PhysicalSpace/" class="btn btn-primary">
                         Go to physical space </a>
                 </p>
             </div>
