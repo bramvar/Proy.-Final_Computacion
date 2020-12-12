@@ -6,11 +6,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class InstitutionDelegateImp implements InstitutionDelegate {
 
     private RestTemplate restTemplate;
@@ -30,7 +32,7 @@ public class InstitutionDelegateImp implements InstitutionDelegate {
 
     @Override
     public Iterable<Institution> GET_Institutions() {
-        Institution[] institutions= restTemplate.getForObject(SERVER+"institutions",Institution[].class);
+        Institution[] institutions= restTemplate.getForObject(SERVER+"institution",Institution[].class);
         List<Institution> instList= Arrays.asList(institutions);
         return instList;
     }

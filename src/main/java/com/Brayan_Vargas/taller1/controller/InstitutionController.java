@@ -1,5 +1,6 @@
 package com.Brayan_Vargas.taller1.controller;
 
+import com.Brayan_Vargas.taller1.delegate.InstitutionDelegate;
 import com.Brayan_Vargas.taller1.model.Institution;
 import com.Brayan_Vargas.taller1.service.InstitutionService;
 import com.Brayan_Vargas.taller1.validation.newInstitution;
@@ -19,17 +20,14 @@ import java.util.Optional;
 @RequestMapping("/frontapi")
 public class InstitutionController {
 
-    InstitutionService institutionService;
-
-    @Autowired
-    public InstitutionController(InstitutionService institutionService) {
-        this.institutionService = institutionService;
-    }
+    //InstitutionService institutionService;
+    private InstitutionDelegate institutionDelegate;
 
     @PreAuthorize("hasRole('admin')")
     @GetMapping("/Institution/")
     public String indexIntitution(Model model){
-        model.addAttribute("institutions",institutionService.findAll());
+        if(institutionDelegate.GET_Institutions().iterator().hasNext())
+             model.addAttribute("institutions",institutionDelegate.GET_Institutions());
         return"Institution/index";
     }
 
@@ -44,7 +42,7 @@ public class InstitutionController {
                                   @RequestParam(value = "action", required = true) String action, Model model) {
 
         if(action.equals("Cancel"))
-            return "redirect:/Institution/";
+            return "redirect:/frontapi/Institution/";
 
         if (bindingResult.hasErrors()) {
 /*
@@ -62,16 +60,17 @@ public class InstitutionController {
         }
 
         else if (!action.equals("Cancel")) {
-            institutionService.saveInstitution(institution);
+            //institutionService.saveInstitution(institution);
+            institutionDelegate.POST_Institution(institution);
         }
 
-        return "redirect:/Institution/";
+        return "redirect:/frontapi/Institution/";
     }
 
 
     @GetMapping("/Institution/edit/{id}")
     public String showUpdateInstitution(@PathVariable("id") long id, Model model) {
-        Institution institution = institutionService.getInstitution(id);
+        Institution institution = institutionDelegate.GET_Institution(id);
 
         if (institution == null)
             throw new IllegalArgumentException("Invalid user Id:" + id);
@@ -98,7 +97,7 @@ public class InstitutionController {
 
         if (action.equals("Cancel")) {
 
-            return "redirect:/Institution/";
+            return "redirect:/frontapi/Institution/";
         }
 
         if (bindingResult.hasErrors()) {
@@ -117,10 +116,11 @@ public class InstitutionController {
         }
 
         if (action != null && !action.equals("Cancel")) {
-            institutionService.editInstitution(institution);
+            //institutionService.editInstitution(institution);
+            institutionDelegate.PUT_Institution(institution);
         }
 
-        return "redirect:/Institution/";
+        return "redirect:/frontapi/Institution/";
     }
 
     @GetMapping("/Institution/consult")
@@ -133,7 +133,7 @@ public class InstitutionController {
     @PostMapping("/Institution/consult")
     public String showConsultInstitution(@ModelAttribute Institution institution, Model model) throws NotFoundException {
 
-        Institution inst = institutionService.getInstitution(institution.getInstId());
+        Institution inst = institutionDelegate.GET_Institution(institution.getInstId());
 
         if (inst == null) {
             throw new NotFoundException("USU NO ENCONTRADO");
