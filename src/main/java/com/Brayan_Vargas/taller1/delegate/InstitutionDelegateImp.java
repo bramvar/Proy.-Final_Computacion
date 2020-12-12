@@ -16,8 +16,9 @@ public class InstitutionDelegateImp implements InstitutionDelegate {
 
 
     @Override
-    public void GET_Institution(long id) {
-
+    public Institution GET_Institution(long id) {
+        Institution inst= restTemplate.getForObject(SERVER+"institution/"+id,Institution.class);
+        return inst;
     }
 
     @Override
