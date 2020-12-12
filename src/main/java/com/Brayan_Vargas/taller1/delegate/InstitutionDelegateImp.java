@@ -2,7 +2,14 @@ package com.Brayan_Vargas.taller1.delegate;
 
 import com.Brayan_Vargas.taller1.model.Institution;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class InstitutionDelegateImp implements InstitutionDelegate {
 
@@ -22,22 +29,28 @@ public class InstitutionDelegateImp implements InstitutionDelegate {
     }
 
     @Override
-    public void GET_Institutions() {
-
+    public Iterable<Institution> GET_Institutions() {
+        Institution[] institutions= restTemplate.getForObject(SERVER+"institutions",Institution[].class);
+        List<Institution> instList= Arrays.asList(institutions);
+        return instList;
     }
 
     @Override
     public Institution POST_Institution(Institution institution) {
-        return null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Institution> req =new HttpEntity<>(institution,headers);
+        ResponseEntity<Institution> inst = restTemplate.postForEntity(SERVER+"institution,",req,Institution.class);
+        return inst.getBody();
     }
 
     @Override
     public void PUT_Institution(Institution institution) {
-
+        restTemplate.put(SERVER+"institution", institution,Institution.class);
     }
 
     @Override
     public void DELETE_Institution(Institution institution) {
-
+        restTemplate.delete(SERVER+"institution/", institution,Institution.class);
     }
 }

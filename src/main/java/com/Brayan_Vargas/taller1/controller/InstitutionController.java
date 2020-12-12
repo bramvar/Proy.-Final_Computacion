@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/frontapi")
 public class InstitutionController {
 
     InstitutionService institutionService;
