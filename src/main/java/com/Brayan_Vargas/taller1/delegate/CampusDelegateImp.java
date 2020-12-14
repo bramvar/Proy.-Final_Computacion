@@ -13,7 +13,7 @@ import java.util.List;
 public class CampusDelegateImp implements CampusDelegate{
 
     private RestTemplate restTemplate;
-    final String SERVER="";
+    final String SERVER="http://localhost:8080/backapi/";
 
     @Autowired
     public CampusDelegateImp(RestTemplate restTemplate) {
