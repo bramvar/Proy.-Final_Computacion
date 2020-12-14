@@ -2,8 +2,10 @@ package com.Brayan_Vargas.taller1.delegate;
 
 import com.Brayan_Vargas.taller1.model.Institutioncampus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@Component
 public class CampusDelegateImp implements CampusDelegate{
 
     private RestTemplate restTemplate;

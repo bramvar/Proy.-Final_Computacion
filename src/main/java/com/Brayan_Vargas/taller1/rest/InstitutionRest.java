@@ -20,7 +20,6 @@ public class InstitutionRest {
 
     @GetMapping("/institution")
     public Iterable<Institution> loadInstitutions(){
-        System.out.println("started");
         return institutionService.findAll();
     }
 
@@ -30,7 +29,7 @@ public class InstitutionRest {
     }
 
     @GetMapping("/institution/{id}")
-    public Institution showUpdateForm(@PathVariable("id") long id ){
+    public Institution findById(@PathVariable("id") long id ){
         return institutionService.getInstitution(id);
     }
 
