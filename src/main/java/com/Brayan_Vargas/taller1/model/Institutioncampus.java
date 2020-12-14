@@ -1,6 +1,7 @@
 package com.Brayan_Vargas.taller1.model;
 
 import com.Brayan_Vargas.taller1.validation.newCampus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -20,8 +21,8 @@ public class Institutioncampus implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	//@SequenceGenerator(name="INSTITUTIONCAMPUS_INSTCAMID_GENERATOR", sequenceName="INSTITUTIONCAMPUS_SEQ")
-	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INSTITUTIONCAMPUS_INSTCAMID_GENERATOR")
+	@SequenceGenerator(name="INSTITUTIONCAMPUS_INSTCAMID_GENERATOR", sequenceName="INSTITUTIONCAMPUS_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INSTITUTIONCAMPUS_INSTCAMID_GENERATOR")
 	@Column(name="INSTCAM_ID")
 	private long instcamId;
 
@@ -35,10 +36,12 @@ public class Institutioncampus implements Serializable {
 
 	//bi-directional many-to-one association to com.example.taller1.model.Device
 	@OneToMany(mappedBy="institutioncampus")
+	@JsonIgnore
 	private List<Device> devices;
 
 	//bi-directional many-to-one association to com.example.taller1.model.HatCapacitydetail
 	@OneToMany(mappedBy="institutioncampus")
+	@JsonIgnore
 	private List<HatCapacitydetail> hatCapacitydetails;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Institution
@@ -49,14 +52,17 @@ public class Institutioncampus implements Serializable {
 
 	//bi-directional many-to-one association to com.example.taller1.model.Physicalspace
 	@OneToMany(mappedBy="institutioncampus")
+	@JsonIgnore
 	private List<Physicalspace> physicalspaces;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Visit
 	@OneToMany(mappedBy="institutioncampus")
+	@JsonIgnore
 	private List<Visit> visits;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Visitreason
 	@OneToMany(mappedBy="institutioncampus")
+	@JsonIgnore
 	private List<Visitreason> visitreasons;
 
 	public Institutioncampus() {
