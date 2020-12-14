@@ -7,15 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class UserServiceDelegateApplication {
-/*
+public class BeanConfing {
+
     @Bean
     RestTemplate template(){
         return new RestTemplate();
-    }*/
-
-    @Bean
-    InstitutionDelegate institutionDelegate(){
-        return new InstitutionDelegateImp();
     }
 }

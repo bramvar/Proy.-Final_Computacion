@@ -11,14 +11,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+@Component
 public class InstitutionDelegateImp implements InstitutionDelegate {
 
     private RestTemplate restTemplate;
     final String SERVER="http://localhost:8080/backapi/";
 
-    public InstitutionDelegateImp() {
-        this.restTemplate = new RestTemplate();
+    @Autowired
+    public InstitutionDelegateImp(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
     @Override
