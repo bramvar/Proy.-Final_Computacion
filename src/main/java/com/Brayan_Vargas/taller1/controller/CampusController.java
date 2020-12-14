@@ -52,7 +52,7 @@ public class CampusController {
                              @RequestParam(value = "action", required = true) String action, Model model) {
 
         if(action.equals("Cancel"))
-            return "redirect:/Campus/";
+            return "redirect:/frontapi/Campus/";
 
         if (bindingResult.hasErrors()) {
 
@@ -67,7 +67,7 @@ public class CampusController {
             campusDelegate.POST_Campus(institutioncampus);
         }
 
-        return "redirect:/Campus/";
+        return "redirect:/frontapi/Campus/";
     }
 
         @GetMapping("/Campus/edit/{id}")
@@ -89,7 +89,7 @@ public class CampusController {
                                           BindingResult bindingResult, Model model) {
 
         if (action.equals("Cancel"))
-            return "redirect:/Campus/";
+            return "redirect:/frontapi/Campus/";
 
 
         if (bindingResult.hasErrors()) {
@@ -105,7 +105,7 @@ public class CampusController {
             campusDelegate.PUT_Campus(institutioncampus);
         }
 
-        return "redirect:/Campus/";
+        return "redirect:/frontapi/Campus/";
     }
 
     @GetMapping("/Campus/consult")
