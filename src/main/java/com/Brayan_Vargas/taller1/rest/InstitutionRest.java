@@ -2,11 +2,13 @@ package com.Brayan_Vargas.taller1.rest;
 
 import com.Brayan_Vargas.taller1.model.Institution;
 import com.Brayan_Vargas.taller1.service.InstitutionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+
 @RestController
+//@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/backapi")
 public class InstitutionRest {
 
@@ -18,6 +20,7 @@ public class InstitutionRest {
 
     @GetMapping("/institution")
     public Iterable<Institution> loadInstitutions(){
+        System.out.println("started");
         return institutionService.findAll();
     }
 

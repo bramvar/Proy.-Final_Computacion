@@ -35,17 +35,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-
+/*
         httpSecurity.formLogin().loginPage("/login").permitAll().and().authorizeRequests()
-                .antMatchers("/index").permitAll()
-                .antMatchers("/Institution/**").hasAnyRole("admin")
-                .antMatchers("/PhysicalSpace/**").hasAnyRole("Operator")
-                .antMatchers("/PhysicalSpaceType/**").hasAnyRole("admin")
-                .antMatchers("/Campus/**").hasRole("Operator")
+                .antMatchers("/frontapi/index").permitAll()
+                .antMatchers("/frontapi/Institution/**").hasAnyRole("admin")
+                .antMatchers("/frontapi/PhysicalSpace/**").hasAnyRole("Operator")
+                .antMatchers("/frontapi/PhysicalSpaceType/**").hasAnyRole("admin")
+                .antMatchers("/frontapi/Campus/**").hasRole("Operator")
                 .anyRequest().authenticated().and().httpBasic().and().logout()
                 .invalidateHttpSession(true).clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
-                .permitAll().and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .permitAll().and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);*/
+
+        httpSecurity.csrf().disable().authorizeRequests().antMatchers("/", "index").permitAll()
+//				 .antMatchers("/institution/**")
+//				 .hasRole(ApplicationUserRole.ADMIN.name()).antMatchers("/poll/**")
+//				 .hasRole(ApplicationUserRole.ADMIN.name()).antMatchers("/question/**")
+//				 .hasRole(ApplicationUserRole.OPERATOR.name()).antMatchers("/question-weight/**")
+//				 .hasRole(ApplicationUserRole.OPERATOR.name()).anyRequest().authenticated()
+                .and().formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/", true).and().logout()
+                .logoutUrl("/logout").clearAuthentication(true).invalidateHttpSession(true).logoutSuccessUrl("/login");
 /*
         httpSecurity.authorizeRequests().antMatchers("/**").authenticated()
                 .antMatchers("/Institution/**").hasRole("admin")

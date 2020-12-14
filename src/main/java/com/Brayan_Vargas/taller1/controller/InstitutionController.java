@@ -30,8 +30,7 @@ public class InstitutionController {
     @PreAuthorize("hasRole('admin')")
     @GetMapping("/Institution/")
     public String indexIntitution(Model model){
-        if(institutionDelegate.GET_Institutions("s").iterator().hasNext())
-             model.addAttribute("institutions",institutionDelegate.GET_Institutions("s"));
+        model.addAttribute("institutions",institutionDelegate.GET_Institutions());
         return"Institution/index";
     }
 

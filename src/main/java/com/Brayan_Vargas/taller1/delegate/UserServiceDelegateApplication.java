@@ -6,9 +6,14 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class UserServiceDelegateApplication {
-
+/*
     @Bean
     RestTemplate template(){
         return new RestTemplate();
+    }*/
+
+    @Bean
+    InstitutionDelegate institutionDelegate(){
+        return new InstitutionDelegateImp();
     }
 }
