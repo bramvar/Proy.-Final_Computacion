@@ -148,22 +148,22 @@ public class InstitutionController {
 
         return "Institution/update-institution";
     }
-
+/*
     @GetMapping("/institutions/del/{id}")
     public String deleteInstitution(@PathVariable("id") long id) {
         Institution institution = insService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 
-        Iterable<Physicalspacetype> spacest =typeService.findAll();
-        Iterable<Institutioncampus> campus =campusService.findAll();
+        Iterable<Physicalspacetype> spacest = typeService.findAll();
+        Iterable<Institutioncampus> campus = campusService.findAll();
 
         for (Institutioncampus institutioncampus : campus) {
-            if (institutioncampus.getInstitution().getInstId()==id) {
+            if (institutioncampus.getInstitution().getInstId() == id) {
 
 
-                Iterable<Physicalspace> spaces =spaceService.findAll();
+                Iterable<Physicalspace> spaces = spaceService.findAll();
 
                 for (Physicalspace physicalspace : spaces) {
-                    if (physicalspace.getInstitutioncampus().getInstcamId()==id) {
+                    if (physicalspace.getInstitutioncampus().getInstcamId() == id) {
                         spaceService.delete(physicalspace);
                     }
                 }
@@ -174,7 +174,7 @@ public class InstitutionController {
         }
 
         for (Physicalspacetype physicalspacetype : spacest) {
-            if (physicalspacetype.getInstitution().getInstId()==id) {
+            if (physicalspacetype.getInstitution().getInstId() == id) {
                 typeService.delete(physicalspacetype);
             }
         }
@@ -182,5 +182,6 @@ public class InstitutionController {
         insService.delete(institution);
 
         return "redirect:/institutions/";
+    }*/
 
 }
