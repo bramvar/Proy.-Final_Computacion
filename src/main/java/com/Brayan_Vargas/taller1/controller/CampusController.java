@@ -1,5 +1,7 @@
 package com.Brayan_Vargas.taller1.controller;
 
+import com.Brayan_Vargas.taller1.delegate.CampusDelegate;
+import com.Brayan_Vargas.taller1.delegate.InstitutionDelegate;
 import com.Brayan_Vargas.taller1.model.Institution;
 import com.Brayan_Vargas.taller1.model.Institutioncampus;
 import com.Brayan_Vargas.taller1.model.Physicalspacetype;
@@ -20,24 +22,27 @@ import java.util.Optional;
 @Controller
 public class CampusController {
 
-    CampusService campusService;
-    InstitutionService institutionService;
+    //CampusService campusService;
+    //InstitutionService institutionService;
 
-    public CampusController(CampusService campusService, InstitutionService institutionService) {
-        this.campusService = campusService;
-        this.institutionService = institutionService;
+    private CampusDelegate campusDelegate;
+    private InstitutionDelegate institutionDelegate;
+
+    public CampusController(CampusDelegate campusDelegate, InstitutionDelegate institutionDelegate) {
+        this.campusDelegate = campusDelegate;
+        this.institutionDelegate = institutionDelegate;
     }
 
     @GetMapping("/Campus/")
     public String indexCampus(Model model){
-        model.addAttribute("campuses", campusService.findAll());
+        model.addAttribute("campuses", campusDelegate.GET_Campuses());
         return "Campus/index";
     }
 
     @GetMapping("/Campus/add")
     public String addCampus(Model model){
         model.addAttribute("institutioncampus", new Institutioncampus());
-        model.addAttribute("institutions",institutionService.findAll());
+        model.addAttribute("institutions",institutionDelegate.GET_Institutions());
         return "Campus/add-campus";
     }
 
@@ -52,13 +57,13 @@ public class CampusController {
 
             model.addAttribute("instcamName", institutioncampus.getInstcamName());
             model.addAttribute("instcamOccupation", institutioncampus.getInstcamOccupation());
-            model.addAttribute("institutions", institutionService.findAll());
+            model.addAttribute("institutions", institutionDelegate.GET_Institutions());
 
             return "Campus/add-campus";
         }
 
         else if (!action.equals("Cancel")) {
-            campusService.saveCampus(institutioncampus);
+            campusDelegate.POST_Campus(institutioncampus);
         }
 
         return "redirect:/Campus/";
@@ -66,13 +71,13 @@ public class CampusController {
 
         @GetMapping("/Campus/edit/{id}")
         public String showUpdateCampus(@PathVariable("id") long id, Model model) {
-            Institutioncampus institutioncampus = campusService.findById(id);
+            Institutioncampus institutioncampus = campusDelegate.GET_Campus(id);
 
             if (institutioncampus  == null)
                 throw new IllegalArgumentException("Invalid user Id:" + id);
 
             model.addAttribute("institutioncampus", institutioncampus);
-            model.addAttribute("institutions",institutionService.findAll());
+            model.addAttribute("institutions",institutionDelegate.GET_Institutions());
 
             return "Campus/update-campus";
         }
@@ -90,13 +95,13 @@ public class CampusController {
 
             model.addAttribute("instcamName", institutioncampus.getInstcamName());
             model.addAttribute("instcamOccupation", institutioncampus.getInstcamOccupation());
-            model.addAttribute("institutions", institutionService.findAll());
+            model.addAttribute("institutions", institutionDelegate.GET_Institutions());
 
             return "Campus/update-campus";
         }
 
         if (action != null && !action.equals("Cancel")) {
-            campusService.editCampus(institutioncampus);
+            campusDelegate.PUT_Campus(institutioncampus);
         }
 
         return "redirect:/Campus/";
@@ -112,7 +117,7 @@ public class CampusController {
     @PostMapping("/Campus/consult")
     public String showConsultInstitution(@ModelAttribute Institution institution, Model model) throws NotFoundException {
 
-        Institution inst = institutionService.getInstitution(institution.getInstId());
+        Institution inst = institutionDelegate.GET_Institution(institution.getInstId());
         if (inst == null) {
             throw new NotFoundException("USU NO ENCONTRADO");
         }
