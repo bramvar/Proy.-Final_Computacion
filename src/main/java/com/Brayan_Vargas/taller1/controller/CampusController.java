@@ -84,7 +84,7 @@ public class CampusController {
         }
 
     @PostMapping("/Campus/edit/{id}")
-    public String updatePhysicalSpaceType(@PathVariable("id") long id,
+    public String updateCampus(@PathVariable("id") long id,
                                           @RequestParam(value = "action", required = true) String action, @Validated(newCampus.class) Institutioncampus institutioncampus,
                                           BindingResult bindingResult, Model model) {
 
@@ -93,15 +93,17 @@ public class CampusController {
 
 
         if (bindingResult.hasErrors()) {
-
+/*
             model.addAttribute("instcamName", institutioncampus.getInstcamName());
             model.addAttribute("instcamOccupation", institutioncampus.getInstcamOccupation());
-            model.addAttribute("institutions", institutionDelegate.GET_Institutions());
+            model.addAttribute("institutions", institutionDelegate.GET_Institutions());*/
 
             return "Campus/update-campus";
         }
 
         if (action != null && !action.equals("Cancel")) {
+            institutioncampus.setInstcamId(id);
+            System.out.println("yesss");
             campusDelegate.PUT_Campus(institutioncampus);
         }
 
@@ -109,14 +111,14 @@ public class CampusController {
     }
 
     @GetMapping("/Campus/consult")
-    public String consultPhysicalSpaceType(Model model) {
+    public String consultCampus(Model model) {
 
         model.addAttribute("institutioncampus", new Institutioncampus());
         return "Campus/consult-campus";
     }
 
     @PostMapping("/Campus/consult")
-    public String showConsultInstitution(@ModelAttribute Institution institution, Model model) throws NotFoundException {
+    public String showConsultCampus(@ModelAttribute Institution institution, Model model) throws NotFoundException {
 
         Institution inst = institutionDelegate.GET_Institution(institution.getInstId());
         if (inst == null) {

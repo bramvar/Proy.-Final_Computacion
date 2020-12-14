@@ -41,6 +41,7 @@ public class CampusDelegateImp implements CampusDelegate{
     @Override
     public void PUT_Campus(Institutioncampus institutioncampus) {
         restTemplate.put(SERVER+"campus", institutioncampus,Institutioncampus.class);
+        System.out.println("yesss");
     }
 
     @Override

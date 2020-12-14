@@ -32,6 +32,7 @@ public class CampusRest {
 
     @PutMapping("/campus")
     public ResponseEntity updateCampus(@RequestBody Institutioncampus institutioncampus){
+        System.out.println("yesss"+institutioncampus.getInstcamId());
         return  ResponseEntity.ok(campusService.editCampus(institutioncampus));
     }
 }
