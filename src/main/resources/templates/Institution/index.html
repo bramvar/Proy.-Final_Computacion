@@ -50,9 +50,9 @@
                         <td class="text-info" th:text="${institution.instAcadprogrammedcoursesurl}"></td>
                         <td class="text-info" th:text="${institution.instLdapurl}"></td>
                         <td></td>
-                        <td><a th:href="@{/Institution/edit/{id}(id=${institution.instId})}"
+                        <td><a th:href="@{/frontapi/Institution/edit/{id}(id=${institution.instId})}"
                                class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                        <td><a th:href="@{/Institution/del/{id}(id=${institution.instId})}"
+                        <td><a th:href="@{/frontapi/Institution/del/{id}(id=${institution.instId})}"
                                class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                     </tr>
                     </tbody>

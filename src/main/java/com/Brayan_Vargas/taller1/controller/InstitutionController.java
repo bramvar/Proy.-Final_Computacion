@@ -73,6 +73,7 @@ public class InstitutionController {
 
     @GetMapping("/Institution/edit/{id}")
     public String showUpdateInstitution(@PathVariable("id") long id, Model model) {
+        System.out.println("id front: "+id);
         Institution institution = institutionDelegate.GET_Institution(id);
 
         if (institution == null)
@@ -120,6 +121,7 @@ public class InstitutionController {
 
         if (action != null && !action.equals("Cancel")) {
             //institutionService.editInstitution(institution);
+            institution.setInstId(id);
             institutionDelegate.PUT_Institution(institution);
         }
 

@@ -51,6 +51,7 @@ public class InstitutionServiceImp implements InstitutionService{
 
     //Punto 5a
     @Override
+    @Transactional
     public Institution editInstitution(Institution inst) {
 
         if(inst.getInstAcademicserverurl().startsWith("https://") &&
@@ -66,9 +67,11 @@ public class InstitutionServiceImp implements InstitutionService{
         ){
 
             //Optional<Institution> in=institutionRep.findById(inst.getInstId());
-            Institution in= institutionDAO.findById(inst.getInstId());
-
+            Institution in = institutionDAO.findById(inst.getInstId());
+            System.out.println(" no entra porque id "+inst.getInstId());
             if(in != null){
+
+                System.out.println("entra");
               /*  in.setInstName(inst.getInstName());
                 in.setInstAcademicserverurl(inst.getInstAcademicserverurl());
                 in.setInstAcadextradataurl(inst.getInstAcadextradataurl());
@@ -79,8 +82,8 @@ public class InstitutionServiceImp implements InstitutionService{
                 in.setInstAcadprogrammedcoursesurl(inst.getInstAcadprogrammedcoursesurl());
                 in.setInstLdapurl(inst.getInstLdapurl());*/
 
-                institutionDAO.edit(in);
-                return in;
+                institutionDAO.edit(inst);
+                return inst;
             }
         }
         return null;
