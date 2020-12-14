@@ -57,11 +57,14 @@ public class InstitutionDelegateImp implements InstitutionDelegate {
 
     @Override
     public Institution POST_Institution(Institution institution) {
+        /*
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Institution> req =new HttpEntity<>(institution,headers);
         ResponseEntity<Institution> inst = restTemplate.postForEntity(SERVER+"institution,",req,Institution.class);
-        return inst.getBody();
+        return inst.getBody();*/
+
+        return restTemplate.postForEntity(SERVER+"institution", institution, Institution.class).getBody();
     }
 
     @Override
