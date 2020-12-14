@@ -30,8 +30,8 @@ public class InstitutionDelegateImp implements InstitutionDelegate {
     @Override
     public Iterable<Institution> GET_Institutions() {
 
-        ResponseEntity<Institution[]> response = restTemplate.getForEntity(SERVER+"institution", Institution[].class);
-        return Arrays.asList(response.getBody());
+      //  ResponseEntity<Institution[]> response = restTemplate.getForEntity(SERVER+"institution", Institution[].class);
+      //  return Arrays.asList(response.getBody());
 
 /*
         String url = SERVER+"instituti";
@@ -49,10 +49,10 @@ public class InstitutionDelegateImp implements InstitutionDelegate {
 
         return inst;
 */
-/*
+
         Institution[] institutions= restTemplate.getForObject(SERVER+"institution",Institution[].class);
         List<Institution> instList= Arrays.asList(institutions);
-        return instList;*/
+        return instList;
     }
 
     @Override

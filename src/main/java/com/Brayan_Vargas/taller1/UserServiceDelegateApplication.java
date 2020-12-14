@@ -1,5 +1,7 @@
-package com.Brayan_Vargas.taller1.delegate;
+package com.Brayan_Vargas.taller1;
 
+import com.Brayan_Vargas.taller1.delegate.InstitutionDelegate;
+import com.Brayan_Vargas.taller1.delegate.InstitutionDelegateImp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;

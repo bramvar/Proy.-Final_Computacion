@@ -1,6 +1,7 @@
 package com.Brayan_Vargas.taller1.model;
 
 import com.Brayan_Vargas.taller1.validation.newInstitution;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class Institution implements Serializable {
 	private String instAcadextradataurl;
 
 	@Column(name = "INST_ACADLOGINPASSWORD")
+	@JsonIgnore
 	private String instAcadloginpassword;
 
 	@Column(name = "INST_ACADLOGINURL")
@@ -39,6 +41,7 @@ public class Institution implements Serializable {
 	private String instAcadloginurl;
 
 	@Column(name = "INST_ACADLOGINUSERNAME")
+	@JsonIgnore
 	private String instAcadloginusername;
 
 	@Column(name = "INST_ACADPERSONINFODOCURL")
@@ -58,9 +61,11 @@ public class Institution implements Serializable {
 	private String instAcadprogrammedcoursesurl;
 
 	@Column(name = "INST_LDAPBASEDN")
+	@JsonIgnore
 	private String instLdapbasedn;
 
 	@Column(name = "INST_LDAPPASSWORD")
+	@JsonIgnore
 	private String instLdappassword;
 
 	@Column(name = "INST_LDAPURL")
@@ -68,12 +73,15 @@ public class Institution implements Serializable {
 	private String instLdapurl;
 
 	@Column(name = "INST_LDAPUSERNAME")
+	@JsonIgnore
 	private String instLdapusername;
 
 	@Column(name = "INST_LDAPUSERSEARCHBASE")
+	@JsonIgnore
 	private String instLdapusersearchbase;
 
 	@Column(name = "INST_LDAPUSERSEARCHFILTER")
+	@JsonIgnore
 	private String instLdapusersearchfilter;
 
 	@Column(name = "INST_NAME")
@@ -82,46 +90,57 @@ public class Institution implements Serializable {
 
 	// bi-directional many-to-one association to com.example.taller1.model.Accessdenialevent
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Accessdenialevent> accessdenialevents;
 
 	// bi-directional many-to-one association to com.example.taller1.model.Devicestatus
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Devicestatus> devicestatuses;
 
 	// bi-directional many-to-one association to com.example.taller1.model.Devicetype
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Devicetype> devicetypes;
 
 	// bi-directional many-to-one association to com.example.taller1.model.Epidemstatustransition
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Epidemstatustransition> epidemstatustransitions;
 
 	// bi-directional many-to-one association to com.example.taller1.model.Eventstatus
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Eventstatus> eventstatuses;
 
 	// bi-directional many-to-one association to com.example.taller1.model.HatParameter
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<HatParameter> hatParameters;
 
 	// bi-directional many-to-one association to com.example.taller1.model.Institutioncampus
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Institutioncampus> institutioncampuses;
 
 	// bi-directional many-to-one association to com.example.taller1.model.Measurement
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Measurement> measurements;
 
 	// bi-directional many-to-one association to com.example.taller1.model.Person
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Person> persons;
 
 	// bi-directional many-to-one association to com.example.taller1.model.Physicalspacetype
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Physicalspacetype> physicalspacetypes;
 
 	// bi-directional many-to-one association to com.example.taller1.model.Posessiontype
 	@OneToMany(mappedBy = "institution")
+	@JsonIgnore
 	private List<Posessiontype> posessiontypes;
 
 	public Institution() {
