@@ -83,4 +83,9 @@ public class PhysicalspaceServiceImp implements PhysicalspaceService {
     public Physicalspace findById(long id) {
         return physicalSpaceDAO.findById(id);
     }
+
+    @Override
+    public void delete(Physicalspace physicalspace) {
+        physicalSpaceDAO.delete(physicalspace);
+    }
 }

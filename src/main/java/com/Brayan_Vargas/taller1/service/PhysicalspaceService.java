@@ -10,4 +10,5 @@ public interface PhysicalspaceService {
     public Physicalspace editPhysicalspace(Physicalspace physicalspace);
     public List<Physicalspace> findAll();
     public Physicalspace findById(long id);
+    public void delete(Physicalspace physicalspace);
 }
