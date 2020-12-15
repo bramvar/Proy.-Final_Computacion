@@ -105,4 +105,9 @@ public class InstitutionServiceImp implements InstitutionService{
         return institutionDAO.findAll();
     }
 
+    @Override
+    public void delete(Institution inst) {
+        institutionDAO.delete(inst);
+    }
+
 }

@@ -11,6 +11,7 @@ public interface InstitutionService {
     public Institution getInstitution(long id);
     //public Iterable<Institution> findAll();
     public List<Institution> findAll();
+    public void delete(Institution inst);
 
     public boolean isSaved(Institution institution);
 
