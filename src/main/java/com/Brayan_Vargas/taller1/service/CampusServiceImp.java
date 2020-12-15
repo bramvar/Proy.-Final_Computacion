@@ -71,4 +71,9 @@ public class CampusServiceImp implements CampusService{
     public Institutioncampus findById(long id) {
         return campusDAO.findById(id);
     }
+
+    @Override
+    public void delete(Institutioncampus campus) {
+        campusDAO.delete(campus);
+    }
 }

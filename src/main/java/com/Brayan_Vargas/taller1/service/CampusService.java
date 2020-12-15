@@ -10,4 +10,5 @@ public interface CampusService {
     public Institutioncampus editCampus(Institutioncampus campus);
     public List<Institutioncampus> findAll();
     public Institutioncampus findById(long id);
+    public void delete(Institutioncampus campus);
 }
