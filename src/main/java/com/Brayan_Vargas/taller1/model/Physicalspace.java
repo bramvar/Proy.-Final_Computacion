@@ -1,6 +1,7 @@
 package com.Brayan_Vargas.taller1.model;
 
 import com.Brayan_Vargas.taller1.validation.newPhysicalSpace;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -37,30 +38,36 @@ public class Physicalspace implements Serializable {
 
 	//bi-directional many-to-one association to com.example.taller1.model.Communityinstance
 	@OneToMany(mappedBy="physicalspace")
+	@JsonIgnore
 	private List<Communityinstance> communityinstances;
 
 	//bi-directional many-to-one association to com.example.taller1.model.HatCapacitydetail
 	@OneToMany(mappedBy="physicalspace")
+	@JsonIgnore
 	private List<HatCapacitydetail> hatCapacitydetails;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Institutioncampus
 	@NotNull(groups = newPhysicalSpace.class)
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="INSTCAM_INSTCAM_ID")
 	private Institutioncampus institutioncampus;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Physicalspace
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="PHYSPC_PHYSPC_IDPARENT")
 	private Physicalspace physicalspace;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Physicalspace
 	@OneToMany(mappedBy="physicalspace")
+	@JsonIgnore
 	private List<Physicalspace> physicalspaces;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Physicalspacetype
 	@NotNull(groups = newPhysicalSpace.class)
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="PHYSPCTYPE_PHYSPCTYPE_ID")
 	private Physicalspacetype physicalspacetype;
 

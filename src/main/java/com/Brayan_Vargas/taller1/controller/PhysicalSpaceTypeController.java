@@ -21,6 +21,7 @@ import java.util.Optional;
 
 
 @Controller
+@RequestMapping("/frontapi")
 public class PhysicalSpaceTypeController {
 
     //PhysicalspaceTypeService physicalspaceTypeService;

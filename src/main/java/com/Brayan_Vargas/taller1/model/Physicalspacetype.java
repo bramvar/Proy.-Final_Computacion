@@ -1,6 +1,7 @@
 package com.Brayan_Vargas.taller1.model;
 
 import com.Brayan_Vargas.taller1.validation.newPhysicalSpaceType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -39,6 +40,7 @@ public class Physicalspacetype implements Serializable {
 
 	//bi-directional many-to-one association to com.example.taller1.model.Physicalspace
 	@OneToMany(mappedBy="physicalspacetype")
+	@JsonIgnore
 	private List<Physicalspace> physicalspaces;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Institution
@@ -46,6 +48,7 @@ public class Physicalspacetype implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="INST_INST_ID")
 	@NotNull(groups = {newPhysicalSpaceType.class})
+	@JsonIgnore
 	private Institution institution;
 
 	public Physicalspacetype() {
