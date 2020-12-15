@@ -107,7 +107,6 @@ public class CampusController {
 
         if (action != null && !action.equals("Cancel")) {
             institutioncampus.setInstcamId(id);
-            System.out.println("yesss");
             campusDelegate.PUT_Campus(institutioncampus);
         }
 

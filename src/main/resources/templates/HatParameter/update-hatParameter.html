@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+<div class="container my-5">
+    <h2 class="mb-5">Update User</h2>
+    <div class="row">
+        <div class="col-md-5">
+            <form action="#" th:object="${hatParameter}"th:action="@{/frontapi/HatParameter/edit/{id}(id=${hatParameter.paramId})}" method="post">
+                <div class="row">
+
+
+                    <div>
+                        <input th:field="*{paramId}" type="hidden" id="id" placeholder="Id">
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label for="paramName" class="col-form-label">Name</label> <input
+                            type="text" th:field="*{paramName}" class="form-control" id="paramName"
+                            placeholder="ParamName"> <span
+                            th:if="${#fields.hasErrors('paramName')}" th:errors="*{paramName}"
+                            class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="paramType" class="col-form-label">Type</label> <input
+                            type="text" th:field="*{paramType}" class="form-control" id="paramType"
+                            placeholder="ParamType"> <span
+                            th:if="${#fields.hasErrors('paramType')}" th:errors="*{paramType}"
+                            class="text-danger"> </span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="paramValue" class="col-form-label">Value</label> <input
+                            type="text" th:field="*{paramValue}" class="form-control" id="paramValue"
+                            placeholder="ParamValue"> <span
+                            th:if="${#fields.hasErrors('paramValue')}" th:errors="*{paramValue}"
+                            class="text-danger"> </span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="institution" class="col-form-label">Institution</label> <select
+                            class="form-control-range" id="institution" th:field="*{institution}">
+                        <option th:each="inst : ${institutions}" th:value="${inst.instId}"
+                                class="form-control" th:text="${inst.instName}"
+                                th:selected="${hatParameter.institution=inst}"></option>
+
+                    </select> <span th:if="${#fields.hasErrors('institution')}" th:errors="*{institution}"></span>
+                    </div>
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-3">
+                        <input type="submit" name="action" class="btn btn-primary"
+                               value="Update User">
+                    </div>
+                    <div class="col-md-3 mt-3">
+                        <input type="reset" class="btn btn-secondary" value="Clear">
+                    </div>
+                    <div class="col-md-3 mt-3">
+                        <input type="submit" name="action" class="btn btn-secondary"
+                               value="Cancel">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
