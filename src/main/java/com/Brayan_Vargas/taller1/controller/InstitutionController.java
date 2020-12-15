@@ -194,7 +194,7 @@ public class InstitutionController {
 
         institutionDelegate.DELETE_Institution(institution);
 
-        return "redirect:/frontapi/institutions/";
+        return "redirect:/frontapi/Institution/";
     }
 
 }

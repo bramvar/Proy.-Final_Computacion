@@ -138,4 +138,12 @@ public class PhysicalSpaceController {
 
         return "PhysicalSpace/update-physicalSpace";
     }
+
+    @GetMapping("/PhysicalSpace/del/{id}")
+    public String deleteSpace(@PathVariable("id") long id) {
+        Physicalspace space = spaceDelegate.GET_Space(id);
+        spaceDelegate.DELETE_Space(space);
+        return "redirect:/frontapi/PhysicalSpace/";
+    }
+
 }
