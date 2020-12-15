@@ -24,7 +24,7 @@ public class HatParameterServiceImp implements HatParameterService {
     @Override
     @Transactional
     public HatParameter saveHatParameter(HatParameter hatParameter) {
-        if(hatParameter!=null && institutionDAO.isSaved(hatParameter.getInstitution())){
+        if(hatParameter!=null && institutionDAO.findById(hatParameter.getInstitution().getInstId())!=null){
             hatParameterDAO.save(hatParameter);
             return hatParameter;
         }
@@ -32,8 +32,9 @@ public class HatParameterServiceImp implements HatParameterService {
     }
 
     @Override
+    @Transactional
     public HatParameter editHatParameter(HatParameter hatParameter) {
-        if(hatParameter!=null && institutionDAO.isSaved(hatParameter.getInstitution()) ){
+        if(hatParameter!=null && institutionDAO.findById(hatParameter.getInstitution().getInstId())!=null ){
 
             HatParameter hatParameter1=hatParameterDAO.findById(hatParameter.getParamId());
             if(hatParameter1!=null){

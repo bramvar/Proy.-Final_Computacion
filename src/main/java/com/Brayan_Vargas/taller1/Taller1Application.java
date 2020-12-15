@@ -311,6 +311,7 @@ public class Taller1Application {
 			hatParameter.setParamValue("5");
 			hatParameter.setInstitution(inst);
 
+			hatParameterService.saveHatParameter(hatParameter);
 
 		};
 	}
