@@ -1,6 +1,7 @@
 package com.Brayan_Vargas.taller1.dao;
 
 import com.Brayan_Vargas.taller1.model.HatParameter;
+import com.Brayan_Vargas.taller1.model.Institutioncampus;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -15,31 +16,32 @@ public class HatParameterDAOImp implements HatParameterDAO{
 
     @Override
     public void save(HatParameter hatParameter) {
-
+        entityManager.persist(hatParameter);
     }
 
     @Override
     public void edit(HatParameter hatParameter) {
-
+        entityManager.merge(hatParameter);
     }
 
     @Override
     public void delete(HatParameter hatParameter) {
-
+        entityManager.remove(hatParameter);
     }
 
     @Override
     public boolean isSaved(HatParameter hatParameter) {
-        return false;
+        return entityManager.contains(hatParameter);
     }
 
     @Override
     public HatParameter findById(long id) {
-        return null;
+        return entityManager.find(HatParameter.class, id);
     }
 
     @Override
     public List<HatParameter> findAll() {
-        return null;
+        String jpql ="Select h From HatParameter h";
+        return entityManager.createQuery(jpql).getResultList();
     }
 }
