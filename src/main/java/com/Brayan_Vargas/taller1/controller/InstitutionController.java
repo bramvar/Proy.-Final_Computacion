@@ -1,7 +1,13 @@
 package com.Brayan_Vargas.taller1.controller;
 
+import com.Brayan_Vargas.taller1.delegate.CampusDelegate;
 import com.Brayan_Vargas.taller1.delegate.InstitutionDelegate;
+import com.Brayan_Vargas.taller1.delegate.PhysicalSpaceDelegate;
+import com.Brayan_Vargas.taller1.delegate.PhysicalSpaceTypeDelegate;
 import com.Brayan_Vargas.taller1.model.Institution;
+import com.Brayan_Vargas.taller1.model.Institutioncampus;
+import com.Brayan_Vargas.taller1.model.Physicalspace;
+import com.Brayan_Vargas.taller1.model.Physicalspacetype;
 import com.Brayan_Vargas.taller1.service.InstitutionService;
 import com.Brayan_Vargas.taller1.validation.newInstitution;
 import javassist.NotFoundException;
@@ -22,10 +28,16 @@ public class InstitutionController {
 
     //InstitutionService institutionService;
     private InstitutionDelegate institutionDelegate;
+    private CampusDelegate campusDelegate;
+    private PhysicalSpaceDelegate spaceDelegate;
+    private PhysicalSpaceTypeDelegate typeDelegate;
 
 
-    public InstitutionController(InstitutionDelegate institutionDelegate) {
+    public InstitutionController(InstitutionDelegate institutionDelegate,CampusDelegate campusDelegate,PhysicalSpaceDelegate spaceDelegate,PhysicalSpaceTypeDelegate typeDelegate) {
         this.institutionDelegate = institutionDelegate;
+        this.campusDelegate=campusDelegate;
+        this.spaceDelegate=spaceDelegate;
+        this.typeDelegate=typeDelegate;
     }
 
     @PreAuthorize("hasRole('admin')")
@@ -149,40 +161,40 @@ public class InstitutionController {
 
         return "Institution/update-institution";
     }
-/*
-    @GetMapping("/institutions/del/{id}")
-    public String deleteInstitution(@PathVariable("id") long id) {
-        Institution institution = insService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 
-        Iterable<Physicalspacetype> spacest = typeService.findAll();
-        Iterable<Institutioncampus> campus = campusService.findAll();
+    @GetMapping("/Institution/del/{id}")
+    public String deleteInstitution(@PathVariable("id") long id) {
+        Institution institution = institutionDelegate.GET_Institution(id);
+
+        Iterable<Physicalspacetype> spacest = typeDelegate.GET_Types();
+        Iterable<Institutioncampus> campus = campusDelegate.GET_Campuses();
 
         for (Institutioncampus institutioncampus : campus) {
             if (institutioncampus.getInstitution().getInstId() == id) {
 
 
-                Iterable<Physicalspace> spaces = spaceService.findAll();
+                Iterable<Physicalspace> spaces = spaceDelegate.GET_Spaces();
 
                 for (Physicalspace physicalspace : spaces) {
                     if (physicalspace.getInstitutioncampus().getInstcamId() == id) {
-                        spaceService.delete(physicalspace);
+                        spaceDelegate.DELETE_Space(physicalspace);
                     }
                 }
 
-                campusService.delete(institutioncampus);
+                campusDelegate.DELETE_Campus(institutioncampus);
 
             }
         }
 
         for (Physicalspacetype physicalspacetype : spacest) {
             if (physicalspacetype.getInstitution().getInstId() == id) {
-                typeService.delete(physicalspacetype);
+                typeDelegate.DELETE_Type(physicalspacetype);
             }
         }
 
-        insService.delete(institution);
+        institutionDelegate.DELETE_Institution(institution);
 
-        return "redirect:/institutions/";
-    }*/
+        return "redirect:/frontapi/institutions/";
+    }
 
 }
