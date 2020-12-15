@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Component
 public class HatParameterDelegateImp implements HatParameterDelegate{
 
@@ -18,22 +21,25 @@ public class HatParameterDelegateImp implements HatParameterDelegate{
 
     @Override
     public HatParameter GET_HatParameter(long id) {
-        return null;
+        HatParameter hatParameter=restTemplate.getForObject(SERVER+"hatParameter/"+id,HatParameter.class);
+        return hatParameter;
     }
 
     @Override
-    public Iterable<HatParameter> GET_HatParameter() {
-        return null;
+    public Iterable<HatParameter> GET_HatParameters() {
+        HatParameter[] list = restTemplate.getForObject(SERVER+"hatParameter",HatParameter[].class);
+        List<HatParameter> hatList= Arrays.asList(list);
+        return hatList;
     }
 
     @Override
     public HatParameter POST_HatParameter(HatParameter hatParameter) {
-        return null;
+        return restTemplate.postForEntity(SERVER+"hatParameter",hatParameter,HatParameter.class).getBody();
     }
 
     @Override
     public void PUT_HatParameter(HatParameter hatParameter) {
-
+        restTemplate.put(SERVER+"hatParameter",hatParameter,HatParameter.class);
     }
 
     @Override
