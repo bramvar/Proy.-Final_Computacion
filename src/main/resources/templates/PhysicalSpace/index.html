@@ -40,20 +40,20 @@
                         <td class="text-info" th:text="${physicalSpace.institutioncampus}"></td>
                         <td class="text-info" th:text="${physicalSpace.physicalspacetype}"></td>
                         <td></td>
-                        <td><a th:href="@{/PhysicalSpace/edit/{id}(id=${physicalSpace.physpcId})}"
+                        <td><a th:href="@{/frontapi/PhysicalSpace/edit/{id}(id=${physicalSpace.physpcId})}"
                                class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                        <td><a th:href="@{/PhysicalSpace/del/{id}(id=${physicalSpace.physpcId})}"
+                        <td><a th:href="@{/frontapi/PhysicalSpace/del/{id}(id=${physicalSpace.physpcId})}"
                                class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <p class="my-5">
-                <a href="/PhysicalSpace/add" class="btn btn-primary"><i
+                <a href="/frontapi/PhysicalSpace/add" class="btn btn-primary"><i
                         class="fas fa-user-plus ml-2"></i></a>
             </p>
             <p class="my-5">
-                <a href="/PhysicalSpace/consult" class="btn btn-primary"><i
+                <a href="/frontapi/PhysicalSpace/consult" class="btn btn-primary"><i
                         class="fas fa-search ml-2"></i></a>
             </p>
         </div>

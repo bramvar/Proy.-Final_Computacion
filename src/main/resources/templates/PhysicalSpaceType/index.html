@@ -38,20 +38,20 @@
                         <td class="text-info" th:text="${physicalSpaceType.physpctypeImpliescomm}"></td>
                         <td class="text-info" th:text="${physicalSpaceType.institution}"></td>
                         <td></td>
-                        <td><a th:href="@{/PhysicalSpaceType/edit/{id}(id=${physicalSpaceType.physpctypeId})}"
+                        <td><a th:href="@{/frontapi/PhysicalSpaceType/edit/{id}(id=${physicalSpaceType.physpctypeId})}"
                                class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                        <td><a th:href="@{/PhysicalSpaceType/del/{id}(id=${physicalSpaceType.physpctypeId})}"
+                        <td><a th:href="@{/frontapi/PhysicalSpaceType/del/{id}(id=${physicalSpaceType.physpctypeId})}"
                                class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <p class="my-5">
-                <a href="/PhysicalSpaceType/add" class="btn btn-primary"><i
+                <a href="/frontapi/PhysicalSpaceType/add" class="btn btn-primary"><i
                         class="fas fa-user-plus ml-2"></i></a>
             </p>
             <p class="my-5">
-                <a href="/PhysicalSpaceType/consult" class="btn btn-primary"><i
+                <a href="/frontapi/PhysicalSpaceType/consult" class="btn btn-primary"><i
                         class="fas fa-search ml-2"></i></a>
             </p>
         </div>
