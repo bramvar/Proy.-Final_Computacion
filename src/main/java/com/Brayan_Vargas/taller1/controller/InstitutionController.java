@@ -32,7 +32,7 @@ public class InstitutionController {
     @GetMapping("/Institution/")
     public String indexIntitution(Model model){
         model.addAttribute("institutions",institutionDelegate.GET_Institutions());
-        return"Institution/index";
+        return "Institution/index";
     }
 
     @GetMapping("/Institution/add")
