@@ -11,6 +11,7 @@ public interface HatParameterService {
     public HatParameter editHatParameter(HatParameter hatParameter);
     public HatParameter getHatParameter(long id);
     public List<HatParameter> findAll();
+    public void delete(HatParameter hatParameter);
 
     public boolean isSaved(HatParameter hatParameter);
 }

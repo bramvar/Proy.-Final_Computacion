@@ -55,6 +55,11 @@ public class HatParameterServiceImp implements HatParameterService {
     }
 
     @Override
+    public void delete(HatParameter hatParameter) {
+        hatParameterDAO.delete(hatParameter);
+    }
+
+    @Override
     public boolean isSaved(HatParameter hatParameter) {
         return hatParameterDAO.isSaved(hatParameter);
     }
