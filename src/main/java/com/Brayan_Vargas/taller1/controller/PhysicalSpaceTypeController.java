@@ -53,7 +53,7 @@ public class PhysicalSpaceTypeController {
                                         @RequestParam(value = "action", required = true) String action, Model model) {
 
         if(action.equals("Cancel"))
-             return "redirect:/PhysicalSpaceType/";
+             return "redirect:/frontapi/PhysicalSpaceType/";
 
         if (bindingResult.hasErrors()) {
 
@@ -67,7 +67,7 @@ public class PhysicalSpaceTypeController {
             typeDelegate.POST_Type(physicalspacetype);
         }
 
-        return "redirect:/PhysicalSpaceType/";
+        return "redirect:/frontapi/PhysicalSpaceType/";
     }
 
     @GetMapping("/PhysicalSpaceType/edit/{id}")
@@ -90,7 +90,7 @@ public class PhysicalSpaceTypeController {
                                     BindingResult bindingResult, Model model) {
 
         if (action.equals("Cancel"))
-            return "redirect:/PhysicalSpaceType/";
+            return "redirect:/frontapi/PhysicalSpaceType/";
 
 
         if (bindingResult.hasErrors()) {
@@ -106,7 +106,7 @@ public class PhysicalSpaceTypeController {
             typeDelegate.PUT_Type(physicalspacetype);
         }
 
-        return "redirect:/PhysicalSpaceType/";
+        return "redirect:/frontapi/PhysicalSpaceType/";
     }
 
 
