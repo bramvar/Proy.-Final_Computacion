@@ -42,16 +42,13 @@ public class CampusServiceImp implements CampusService{
     @Transactional
     public Institutioncampus editCampus(Institutioncampus campus) {
 
-        System.out.println("no entra" +institutionDAO.findById(campus.getInstitution().getInstId()).getInstName());
         if(campus.getInstcamName()!=null &&
                 campus.getInstcamOccupation().equals(new BigDecimal("0")) &&
                 campus.getInstitution() != null && institutionDAO.findById(campus.getInstitution().getInstId())!=null
         ){
             //Optional<Institutioncampus> instC = campusRep.findById( campus.getInstcamId());
             Institutioncampus instC = campusDAO.findById(campus.getInstcamId());
-            System.out.println("no entra" +campus.getInstcamId());
             if(instC!=null){
-                System.out.println("entra");
                 /*instC.get().setInstcamName(campus.getInstcamName());
                 instC.get().setInstcamOccupation(campus.getInstcamOccupation());
                 instC.get().setInstitution(campus.getInstitution());*/
