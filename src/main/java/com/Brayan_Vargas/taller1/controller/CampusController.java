@@ -2,8 +2,10 @@ package com.Brayan_Vargas.taller1.controller;
 
 import com.Brayan_Vargas.taller1.delegate.CampusDelegate;
 import com.Brayan_Vargas.taller1.delegate.InstitutionDelegate;
+import com.Brayan_Vargas.taller1.delegate.PhysicalSpaceDelegate;
 import com.Brayan_Vargas.taller1.model.Institution;
 import com.Brayan_Vargas.taller1.model.Institutioncampus;
+import com.Brayan_Vargas.taller1.model.Physicalspace;
 import com.Brayan_Vargas.taller1.model.Physicalspacetype;
 import com.Brayan_Vargas.taller1.service.CampusService;
 import com.Brayan_Vargas.taller1.service.InstitutionService;
@@ -28,10 +30,12 @@ public class CampusController {
 
     private CampusDelegate campusDelegate;
     private InstitutionDelegate institutionDelegate;
+    private PhysicalSpaceDelegate spaceDelegate;
 
-    public CampusController(CampusDelegate campusDelegate, InstitutionDelegate institutionDelegate) {
+    public CampusController(CampusDelegate campusDelegate, InstitutionDelegate institutionDelegate,PhysicalSpaceDelegate spaceDelegate) {
         this.campusDelegate = campusDelegate;
         this.institutionDelegate = institutionDelegate;
+        this.spaceDelegate=spaceDelegate;
     }
 
     @GetMapping("/Campus/")
@@ -128,6 +132,25 @@ public class CampusController {
         model.addAttribute("institution", inst);
 
         return "Institution/update-institution";
+    }
+
+    @GetMapping("/Campus/del/{id}")
+    public String deleteCampus(@PathVariable("id") long id) {
+        Institutioncampus campus = campusDelegate.GET_Campus(id);
+
+        Iterable<Physicalspace> spaces =spaceDelegate.GET_Spaces();
+
+        for (Physicalspace physicalspace : spaces) {
+            if (physicalspace.getInstitutioncampus().getInstcamId()==id) {
+                spaceDelegate.DELETE_Space(physicalspace);
+            }
+        }
+
+
+
+        campus.setInstitution(null);
+        campusDelegate.DELETE_Campus(campus);
+        return "redirect:/frontapi/Campus/";
     }
 
 }
