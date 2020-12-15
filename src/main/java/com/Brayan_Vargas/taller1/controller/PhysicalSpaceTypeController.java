@@ -2,8 +2,10 @@ package com.Brayan_Vargas.taller1.controller;
 
 
 import com.Brayan_Vargas.taller1.delegate.InstitutionDelegate;
+import com.Brayan_Vargas.taller1.delegate.PhysicalSpaceDelegate;
 import com.Brayan_Vargas.taller1.delegate.PhysicalSpaceTypeDelegate;
 import com.Brayan_Vargas.taller1.model.Institution;
+import com.Brayan_Vargas.taller1.model.Physicalspace;
 import com.Brayan_Vargas.taller1.model.Physicalspacetype;
 import com.Brayan_Vargas.taller1.service.InstitutionService;
 import com.Brayan_Vargas.taller1.service.PhysicalspaceTypeService;
@@ -28,12 +30,16 @@ public class PhysicalSpaceTypeController {
     //InstitutionService institutionService;
     PhysicalSpaceTypeDelegate typeDelegate;
     InstitutionDelegate institutionDelegate;
+    PhysicalSpaceDelegate spaceDelegate;
+
+
 
 
     @Autowired
-    public PhysicalSpaceTypeController(PhysicalSpaceTypeDelegate typeDelegate,InstitutionDelegate institutionDelegate) {
+    public PhysicalSpaceTypeController(PhysicalSpaceTypeDelegate typeDelegate,InstitutionDelegate institutionDelegate,PhysicalSpaceDelegate spaceDelegate) {
         this.typeDelegate = typeDelegate;
         this.institutionDelegate=institutionDelegate;
+        this.spaceDelegate=spaceDelegate;
     }
 
     @GetMapping("/PhysicalSpaceType/")
@@ -129,5 +135,22 @@ public class PhysicalSpaceTypeController {
         model.addAttribute("physicalspacetype",physpctype);
 
         return "PhysicalSpaceType/update-physicalSpaceType";
+    }
+
+    @GetMapping("/PhysicalSpaceType/del/{id}")
+    public String deletetype(@PathVariable("id") long id) {
+        Physicalspacetype type = typeDelegate.GET_Type(id);
+
+
+        Iterable<Physicalspace> spaces =spaceDelegate.GET_Spaces();
+
+        for (Physicalspace physicalspace : spaces) {
+            if (physicalspace.getInstitutioncampus().getInstcamId()==id) {
+                spaceDelegate.DELETE_Space(physicalspace);
+            }
+        }
+
+        typeDelegate.DELETE_Type(type);
+        return "redirect:/frontapi/PhysicalSpaceType/";
     }
 }
