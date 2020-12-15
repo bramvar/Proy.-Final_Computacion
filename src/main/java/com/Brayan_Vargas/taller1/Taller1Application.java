@@ -184,7 +184,8 @@ public class Taller1Application {
 	@Bean
 	public CommandLineRunner thymeleafTaller2(UserrDAO userrRepository, PersonDAO personRepository, PersonRoleDAO personRoleRepository, RoleDAO roleRepository,
 
-											  InstitutionService institutionRepository, PhysicalspaceTypeService physicalspacetypeRepository, CampusService campusRepository, PhysicalspaceService physicalspaceRepository){
+											  InstitutionService institutionRepository, PhysicalspaceTypeService physicalspacetypeRepository, CampusService campusRepository, PhysicalspaceService physicalspaceRepository,
+											  HatParameterService hatParameterService){
 		return args -> {
 
 			Person p1=new Person();
@@ -301,6 +302,14 @@ public class Taller1Application {
 			physicalspace.setPhysicalspacetype(physpctype);
 
 			physicalspaceRepository.savePhysicalspace(physicalspace);
+
+			//HAT PARAMETER
+
+			HatParameter hatParameter = new HatParameter();
+			hatParameter.setParamName("hat1");
+			hatParameter.setParamType("type1");
+			hatParameter.setParamValue("5");
+			hatParameter.setInstitution(inst);
 
 
 		};

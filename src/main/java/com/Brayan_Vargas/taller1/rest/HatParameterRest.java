@@ -11,6 +11,10 @@ public class HatParameterRest {
 
     private HatParameterService hatParameterService;
 
+    public HatParameterRest(HatParameterService hatParameterService) {
+        this.hatParameterService = hatParameterService;
+    }
+
     @GetMapping("/hatParameter")
     public Iterable<HatParameter> loadHatParameters(){
         return hatParameterService.findAll();

@@ -16,6 +16,11 @@ public class HatParameterController {
     private HatParameterDelegate hatParameterDelegate;
     private InstitutionDelegate institutionDelegate;
 
+    public HatParameterController(HatParameterDelegate hatParameterDelegate, InstitutionDelegate institutionDelegate) {
+        this.hatParameterDelegate = hatParameterDelegate;
+        this.institutionDelegate = institutionDelegate;
+    }
+
     @GetMapping("/HatParameter")
     public String indexHatParameter(Model model){
         model.addAttribute("hatParameters", hatParameterDelegate.GET_HatParameters());
