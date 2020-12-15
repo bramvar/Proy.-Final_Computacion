@@ -2,6 +2,8 @@ package com.Brayan_Vargas.taller1.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -20,16 +22,20 @@ public class HatParameter implements Serializable {
 	@Column(name="PARAM_ID")
 	private long paramId;
 
+	@NotBlank
 	@Column(name="PARAM_NAME")
 	private String paramName;
 
+	@NotBlank
 	@Column(name="PARAM_TYPE")
 	private String paramType;
 
+	@NotBlank
 	@Column(name="PARAM_VALUE")
 	private String paramValue;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Institution
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="INST_INST_ID")
 	private Institution institution;
