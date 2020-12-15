@@ -3,11 +3,12 @@ package com.Brayan_Vargas.taller1.delegate;
 import com.Brayan_Vargas.taller1.model.Physicalspace;
 import com.Brayan_Vargas.taller1.model.Physicalspacetype;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
-
+@Component
 public class PhysicalSpaceTypeDelegateImp implements PhysicalSpaceTypeDelegate{
 
     private RestTemplate restTemplate;
@@ -20,29 +21,29 @@ public class PhysicalSpaceTypeDelegateImp implements PhysicalSpaceTypeDelegate{
 
     @Override
     public Physicalspacetype GET_Type(long id) {
-        Physicalspacetype type= restTemplate.getForObject(SERVER+"institution/"+id,Physicalspacetype.class);
+        Physicalspacetype type= restTemplate.getForObject(SERVER+"physicalspacetype/"+id,Physicalspacetype.class);
         return type;
     }
 
     @Override
     public Iterable<Physicalspacetype> GET_Types() {
-        Physicalspacetype[] types= restTemplate.getForObject(SERVER+"institution",Physicalspacetype[].class);
+        Physicalspacetype[] types= restTemplate.getForObject(SERVER+"physicalspacetype",Physicalspacetype[].class);
         List<Physicalspacetype> instList= Arrays.asList(types);
         return instList;
     }
 
     @Override
     public Physicalspacetype POST_Type(Physicalspacetype type) {
-        return restTemplate.postForEntity(SERVER+"institution", type, Physicalspacetype.class).getBody();
+        return restTemplate.postForEntity(SERVER+"physicalspacetype", type, Physicalspacetype.class).getBody();
     }
 
     @Override
     public void PUT_Type(Physicalspacetype type) {
-        restTemplate.put(SERVER+"institution", type,Physicalspacetype.class);
+        restTemplate.put(SERVER+"physicalspacetype", type,Physicalspacetype.class);
     }
 
     @Override
     public void DELETE_Type(Physicalspacetype type) {
-        restTemplate.delete(SERVER+"institution/", type,Physicalspacetype.class);
+        restTemplate.delete(SERVER+"physicalspacetype/", type,Physicalspacetype.class);
     }
 }
