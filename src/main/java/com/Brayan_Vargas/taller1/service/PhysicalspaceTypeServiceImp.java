@@ -77,5 +77,10 @@ public class PhysicalspaceTypeServiceImp implements PhysicalspaceTypeService {
         return institutionDAO.findAll();
     }
 
+    @Override
+    public void delete(Physicalspacetype ps) {
+        physicalSpaceTypeDAO.delete(ps);
+    }
+
 
 }
