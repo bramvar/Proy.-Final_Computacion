@@ -3,11 +3,12 @@ package com.Brayan_Vargas.taller1.delegate;
 import com.Brayan_Vargas.taller1.model.Physicalspace;
 import com.Brayan_Vargas.taller1.model.Physicalspacetype;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
-
+@Component
 public class PhysicalSpaceTypeDelegateImp implements PhysicalSpaceTypeDelegate{
 
     private RestTemplate restTemplate;
