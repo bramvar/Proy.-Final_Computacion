@@ -1,6 +1,8 @@
 package com.Brayan_Vargas.taller1.controller;
 
 
+import com.Brayan_Vargas.taller1.delegate.InstitutionDelegate;
+import com.Brayan_Vargas.taller1.delegate.PhysicalSpaceTypeDelegate;
 import com.Brayan_Vargas.taller1.model.Institution;
 import com.Brayan_Vargas.taller1.model.Physicalspacetype;
 import com.Brayan_Vargas.taller1.service.InstitutionService;
@@ -21,25 +23,28 @@ import java.util.Optional;
 @Controller
 public class PhysicalSpaceTypeController {
 
-    PhysicalspaceTypeService physicalspaceTypeService;
-    InstitutionService institutionService;
+    //PhysicalspaceTypeService physicalspaceTypeService;
+    //InstitutionService institutionService;
+    PhysicalSpaceTypeDelegate typeDelegate;
+    InstitutionDelegate institutionDelegate;
+
 
     @Autowired
-    public PhysicalSpaceTypeController(PhysicalspaceTypeService physicalspaceTypeService,InstitutionService institutionService) {
-        this.physicalspaceTypeService = physicalspaceTypeService;
-        this.institutionService=institutionService;
+    public PhysicalSpaceTypeController(PhysicalSpaceTypeDelegate typeDelegate,InstitutionDelegate institutionDelegate) {
+        this.typeDelegate = typeDelegate;
+        this.institutionDelegate=institutionDelegate;
     }
 
     @GetMapping("/PhysicalSpaceType/")
     public String indexPhysicalSpaceType(Model model){
-        model.addAttribute("physicalSpaceTypes", physicalspaceTypeService.findAll());
+        model.addAttribute("physicalSpaceTypes", typeDelegate.GET_Types());
         return "PhysicalSpaceType/index";
     }
 
     @GetMapping("/PhysicalSpaceType/add")
     public String addPhysicalSpaceType(Model model){
         model.addAttribute("physicalspacetype", new Physicalspacetype());
-        model.addAttribute("institutions",institutionService.findAll());
+        model.addAttribute("institutions",institutionDelegate.GET_Institutions());
         return "PhysicalSpaceType/add-physicalSpaceType";
     }
 
@@ -54,12 +59,12 @@ public class PhysicalSpaceTypeController {
 
             model.addAttribute("physpctypeName", physicalspacetype.getPhyspctypeName());
             model.addAttribute("physpctypeImpliescomm", physicalspacetype.getPhyspctypeImpliescomm());
-            model.addAttribute("institutions", institutionService.findAll());
+            model.addAttribute("institutions", institutionDelegate.GET_Institutions());
 
             return "PhysicalSpaceType/add-physicalSpaceType";
         }
         else if (!action.equals("Cancel")) {
-            physicalspaceTypeService.savePhysicalspaceTypeService(physicalspacetype);
+            typeDelegate.POST_Type(physicalspacetype);
         }
 
         return "redirect:/PhysicalSpaceType/";
@@ -67,13 +72,13 @@ public class PhysicalSpaceTypeController {
 
     @GetMapping("/PhysicalSpaceType/edit/{id}")
     public String showUpdatePhysicalSpaceType(@PathVariable("id") long id, Model model) {
-        Physicalspacetype physicalspacetype = physicalspaceTypeService.findById(id);
+        Physicalspacetype physicalspacetype = typeDelegate.GET_Type(id);
 
         if (physicalspacetype == null)
             throw new IllegalArgumentException("Invalid user Id:" + id);
 
         model.addAttribute("physicalspacetype", physicalspacetype);
-        model.addAttribute("institutions",institutionService.findAll());
+        model.addAttribute("institutions",institutionDelegate.GET_Institutions());
 
         return "PhysicalSpaceType/update-physicalSpaceType";
     }
@@ -92,13 +97,13 @@ public class PhysicalSpaceTypeController {
 
             model.addAttribute("physpctypeName", physicalspacetype.getPhyspctypeName());
             model.addAttribute("physpctypeImpliescomm", physicalspacetype.getPhyspctypeImpliescomm());
-            model.addAttribute("institutions", institutionService.findAll());
+            model.addAttribute("institutions", institutionDelegate.GET_Institutions());
 
             return "PhysicalSpaceType/update-physicalSpaceType";
         }
 
         if (action != null && !action.equals("Cancel")) {
-            physicalspaceTypeService.editPhysicalspaceTypeService(physicalspacetype);
+            typeDelegate.PUT_Type(physicalspacetype);
         }
 
         return "redirect:/PhysicalSpaceType/";
@@ -115,7 +120,7 @@ public class PhysicalSpaceTypeController {
     @PostMapping("/PhysicalSpaceType/consult")
     public String showConsultPhysicalSpaceType(@ModelAttribute Physicalspacetype physicalspacetype, Model model) throws NotFoundException {
 
-        Physicalspacetype physpctype = physicalspaceTypeService.findById(physicalspacetype.getPhyspctypeId());
+        Physicalspacetype physpctype = typeDelegate.GET_Type(physicalspacetype.getPhyspctypeId());
         if (physpctype == null) {
             throw new NotFoundException(" NO ENCONTRADO");
         }
