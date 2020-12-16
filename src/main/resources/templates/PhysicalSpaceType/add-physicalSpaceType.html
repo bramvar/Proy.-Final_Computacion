@@ -52,7 +52,7 @@
 
                     <div class="form-group col-md-6">
                         <label for="institution" class="col-form-label">Institution</label> <select
-                            class="form-control-range" th:field="*{institution}">
+                            class="form-control-range" id="institution" th:field="*{institution}">
                         <option th:each="inst : ${institutions}" th:value="${inst.instId}"
                                 class="form-control" th:text="${inst.instName}"
                                 th:selected="${physicalspacetype.institution=inst}"></option>

@@ -41,12 +41,16 @@ public class PhysicalspaceTypeServiceImp implements PhysicalspaceTypeService {
         return null;
     }
 
+    @Transactional
     @Override
     public Physicalspacetype editPhysicalspaceTypeService(Physicalspacetype ps) {
+        System.out.println("servicioo");
+
         if(ps.getPhyspctypeName()!=null && !ps.getPhyspctypeName().equals("") &&
                 ps.getPhyspctypeImpliescomm() != null &&
                 ps.getInstitution() != null && institutionDAO.findById( ps.getInstitution().getInstId())!=null
         ){
+
             //if ps.getInstitution().getInstId();
             Physicalspacetype pst = physicalSpaceTypeDAO.findById(ps.getPhyspctypeId());
             if (pst!=null){
@@ -54,7 +58,7 @@ public class PhysicalspaceTypeServiceImp implements PhysicalspaceTypeService {
                 pst.get().setPhyspctypeImpliescomm(ps.getPhyspctypeImpliescomm());
                 pst.get().setInstitution(ps.getInstitution());*/
                 //physicalspacetypeRep.save(pst.get());
-
+                System.out.println("dao");
                 physicalSpaceTypeDAO.edit(ps);
                 return ps;
             }
@@ -78,8 +82,9 @@ public class PhysicalspaceTypeServiceImp implements PhysicalspaceTypeService {
     }
 
     @Override
-    public void delete(Physicalspacetype ps) {
+    public Physicalspacetype delete(Physicalspacetype ps) {
         physicalSpaceTypeDAO.delete(ps);
+        return null;
     }
 
 

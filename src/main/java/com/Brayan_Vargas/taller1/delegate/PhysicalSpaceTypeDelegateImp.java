@@ -39,11 +39,12 @@ public class PhysicalSpaceTypeDelegateImp implements PhysicalSpaceTypeDelegate{
 
     @Override
     public void PUT_Type(Physicalspacetype type) {
+        System.out.println("putdelegate");
         restTemplate.put(SERVER+"physicalspacetype", type,Physicalspacetype.class);
     }
 
     @Override
     public void DELETE_Type(Physicalspacetype type) {
-        restTemplate.delete(SERVER+"physicalspacetype/", type,Physicalspacetype.class);
+        restTemplate.delete(SERVER+"physicalspacetype", type,Physicalspacetype.class);
     }
 }

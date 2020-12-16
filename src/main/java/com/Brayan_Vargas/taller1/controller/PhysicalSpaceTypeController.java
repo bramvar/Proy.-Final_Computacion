@@ -110,6 +110,9 @@ public class PhysicalSpaceTypeController {
         }
 
         if (action != null && !action.equals("Cancel")) {
+            System.out.println("controller"+id);
+            System.out.println("controller"+physicalspacetype.getPhyspctypeId());
+            physicalspacetype.setPhyspctypeId(id);
             typeDelegate.PUT_Type(physicalspacetype);
         }
 
@@ -139,11 +142,12 @@ public class PhysicalSpaceTypeController {
 
     @GetMapping("/PhysicalSpaceType/del/{id}")
     public String deletetype(@PathVariable("id") long id) {
+
         Physicalspacetype type = typeDelegate.GET_Type(id);
 
 
         Iterable<Physicalspace> spaces =spaceDelegate.GET_Spaces();
-
+        System.out.println("delete controll");
         for (Physicalspace physicalspace : spaces) {
             try {
                 if (physicalspace.getInstitutioncampus().getInstcamId()==id) {

@@ -48,7 +48,7 @@ public class Physicalspacetype implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="INST_INST_ID")
 	@NotNull(groups = {newPhysicalSpaceType.class})
-	@JsonIgnore
+
 	private Institution institution;
 
 	public Physicalspacetype() {

@@ -1,9 +1,11 @@
 package com.Brayan_Vargas.taller1.rest;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.Brayan_Vargas.taller1.model.Physicalspace;
 import com.Brayan_Vargas.taller1.model.Physicalspacetype;
 import com.Brayan_Vargas.taller1.service.PhysicalspaceService;
 import com.Brayan_Vargas.taller1.service.PhysicalspaceTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ public class PhysicalSpaceTypeRest {
 
     private PhysicalspaceTypeService typeService;
 
+    @Autowired
     public PhysicalSpaceTypeRest(PhysicalspaceTypeService typeService) {
         this.typeService = typeService;
     }
@@ -34,8 +37,16 @@ public class PhysicalSpaceTypeRest {
 
     @PutMapping("/physicalspacetype")
     public ResponseEntity updateSpace(@RequestBody Physicalspacetype space){
+        System.out.println("rest");
         return ResponseEntity.ok(typeService.editPhysicalspaceTypeService(space));
     }
+
+   @DeleteMapping("/physicalspacetype")
+   public ResponseEntity deleteSpace(@RequestBody Physicalspacetype space){
+
+       System.out.println("enterdelete");
+       return ResponseEntity.ok(typeService.delete(space));
+   }
 
 
 }

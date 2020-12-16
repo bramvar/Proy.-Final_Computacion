@@ -13,5 +13,5 @@ public interface PhysicalspaceTypeService {
     public List<Physicalspacetype> findAll();
     public Physicalspacetype findById(long id);
     public List<Institution> findAllInst();
-    public void delete(Physicalspacetype ps);
+    public Physicalspacetype delete(Physicalspacetype ps);
 }
