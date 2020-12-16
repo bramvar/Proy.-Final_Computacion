@@ -15,7 +15,7 @@ import java.util.Map;
 public class InstitutionDelegateImp implements InstitutionDelegate {
 
     private RestTemplate restTemplate;
-    final String SERVER="http://localhost:8080/backapi/";
+        final String SERVER="http://localhost:8080/backapi/";
 
     @Autowired
     public InstitutionDelegateImp(RestTemplate restTemplate) {
