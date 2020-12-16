@@ -37,4 +37,9 @@ public class HatCapacityRest {
         return ResponseEntity.ok(hatCapacityService.editHatCapacitydetail(hatCapacitydetail));
     }
 
+    @DeleteMapping("/hatCapacitydetail")
+    public void deleteHatCapacity(@RequestBody HatCapacitydetail hatCapacitydetail){
+         hatCapacityService.delete(hatCapacitydetail);
+    }
+
 }

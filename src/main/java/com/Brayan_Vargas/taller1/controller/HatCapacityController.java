@@ -102,4 +102,14 @@ public class HatCapacityController {
         return "redirect:/frontapi/HatCapacitydetail";
     }
 
+    @GetMapping("/HatCapacitydetail/del/{id}")
+    public String delete(@PathVariable("id") long id){
+
+        HatCapacitydetail toDelete =capacityDelegate.GET_HatCapacitydetail(id);
+      //  campusDelegate.DELETE_Campus(toDelete.getInstitutioncampus());
+        capacityDelegate.DELETE_HatCapacitydetail(toDelete);
+
+        return "redirect:/frontapi/HatCapacitydetail";
+    }
+
 }
