@@ -72,7 +72,6 @@ public class CampusDelegateTest {
     public void POST_CampusTest(){
         campus=new Institutioncampus();
 
-//        when(restTemplate.getForObject(SERVER+"institution/"+1,Institution.class)).thenReturn(ins);
         when(restTemplate.postForEntity(SERVER+"campus", campus, Institutioncampus.class)).thenReturn(new ResponseEntity<>(campus, HttpStatus.OK));
 
         assertEquals(campusDelegate.POST_Campus(campus), campus);
