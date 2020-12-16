@@ -23,14 +23,14 @@ public class HatCapacitydetail implements Serializable {
 	private long capId;
 
 	@Column(name="CAP_CAPACITY")
-	private long capCapacity;
+	private double capCapacity;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="CAP_MODDATE")
 	private Date capModdate;
 
 	@Column(name="CAP_PERCENT")
-	private long capPercent;
+	private double capPercent;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Institutioncampus
 	@ManyToOne
@@ -57,7 +57,7 @@ public class HatCapacitydetail implements Serializable {
 		return this.capCapacity;
 	}
 
-	public void setCapCapacity(long capCapacity) {
+	public void setCapCapacity(double capCapacity) {
 		this.capCapacity = capCapacity;
 	}
 
@@ -69,11 +69,11 @@ public class HatCapacitydetail implements Serializable {
 		this.capModdate = capModdate;
 	}
 
-	public long getCapPercent() {
+	public double getCapPercent() {
 		return this.capPercent;
 	}
 
-	public void setCapPercent(long capPercent) {
+	public void setCapPercent(double capPercent) {
 		this.capPercent = capPercent;
 	}
 

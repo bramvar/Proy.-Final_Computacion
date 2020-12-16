@@ -23,6 +23,7 @@ public class HatCapacityDelegateImp implements HatCapacityDelegate{
     @Override
     public HatCapacitydetail GET_HatCapacitydetail(long id) {
         HatCapacitydetail hatCapacity=restTemplate.getForObject(SERVER+"hatCapacitydetail/"+id,HatCapacitydetail.class);
+
         return hatCapacity;
     }
 

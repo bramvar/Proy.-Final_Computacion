@@ -20,47 +20,40 @@
     <h2 class="mb-5">Completar Información</h2>
     <div class="row">
         <div class="col-md-6">
-            <form action="#" th:action="@{/frontapi/HatParameter/add/}" th:object="${hatParameter}"
+            <form action="#" th:action="@{/frontapi/HatCapacitydetail/add/}" th:object="${hatCapacitydetail}"
                   method="post">
                 <div class="row">
 
                     <div>
-                        <input th:field="*{paramId}" type="hidden" id="id" placeholder="Id">
+                        <input th:field="*{capId}" type="hidden" id="id" placeholder="Id">
                     </div>
 
 
                     <div class="form-group col-md-6">
-                        <label for="paramName" class="col-form-label">Name</label> <input
-                            type="text" th:field="*{paramName}" class="form-control" id="paramName"
-                            placeholder="ParamName"> <span
-                            th:if="${#fields.hasErrors('paramName')}" th:errors="*{paramName}"
+                        <label for="capCapacity" class="col-form-label">capacity</label> <input
+                            type="text" th:field="*{capCapacity}" class="form-control" id="capCapacity"
+                            placeholder="capCapacity"> <span
+                            th:if="${#fields.hasErrors('capCapacity')}" th:errors="*{capCapacity}"
                             class="text-danger"></span>
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label for="paramType" class="col-form-label">Type</label> <input
-                            type="text" th:field="*{paramType}" class="form-control" id="paramType"
-                            placeholder="ParamType"> <span
-                            th:if="${#fields.hasErrors('paramType')}" th:errors="*{paramType}"
+                        <label for="capPercent" class="col-form-label">percent</label> <input
+                            type="text" th:field="*{capPercent}" class="form-control" id="capPercent"
+                            placeholder="capPercent"> <span
+                            th:if="${#fields.hasErrors('capPercent')}" th:errors="*{capPercent}"
                             class="text-danger"> </span>
                     </div>
 
-                    <div class="form-group col-md-6">
-                        <label for="paramValue" class="col-form-label">Value</label> <input
-                            type="text" th:field="*{paramValue}" class="form-control" id="paramValue"
-                            placeholder="ParamValue"> <span
-                            th:if="${#fields.hasErrors('paramValue')}" th:errors="*{paramValue}"
-                            class="text-danger"> </span>
-                    </div>
 
                     <div class="form-group col-md-6">
-                        <label for="institution" class="col-form-label">Institution</label> <select
-                            class="form-control-range" id="institution" th:field="*{institution}">
-                        <option th:each="inst : ${institutions}" th:value="${inst.instId}"
-                                class="form-control" th:text="${inst.instName}"
-                                th:selected="${hatParameter.institution=inst}"></option>
+                        <label for="campus" class="col-form-label">campus</label> <select
+                            class="form-control-range" id="campus" th:field="*{institutioncampus}">
+                        <option th:each="inst : ${campus}" th:value="${inst.instcamId}"
+                                class="form-control" th:text="${inst.instcamName}"
+                                th:selected="${hatCapacitydetail.institutioncampus=inst}"></option>
 
-                    </select> <span th:if="${#fields.hasErrors('institution')}" th:errors="*{institution}"></span>
+                    </select> <span th:if="${#fields.hasErrors('institutioncampus')}" th:errors="*{institutioncampus}"></span>
                     </div>
 
                     <div class="row">
