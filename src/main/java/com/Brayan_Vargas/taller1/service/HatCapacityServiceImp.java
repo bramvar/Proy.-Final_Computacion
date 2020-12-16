@@ -41,6 +41,7 @@ public class HatCapacityServiceImp implements HatCapacityService{
 
             HatCapacitydetail capacity1=hatCapacityDAO.findById(capacity.getCapId());
             if(capacity1!=null){
+
                 hatCapacityDAO.edit(capacity);
                 return capacity;
             }

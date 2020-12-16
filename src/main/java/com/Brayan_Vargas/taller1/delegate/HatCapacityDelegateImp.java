@@ -22,25 +22,26 @@ public class HatCapacityDelegateImp implements HatCapacityDelegate{
 
     @Override
     public HatCapacitydetail GET_HatCapacitydetail(long id) {
-        HatCapacitydetail hatCapacity=restTemplate.getForObject(SERVER+"hatCapacity/"+id,HatCapacitydetail.class);
+        HatCapacitydetail hatCapacity=restTemplate.getForObject(SERVER+"hatCapacitydetail/"+id,HatCapacitydetail.class);
+
         return hatCapacity;
     }
 
     @Override
     public Iterable<HatCapacitydetail> GET_HatCapacitydetails() {
-        HatCapacitydetail[] list = restTemplate.getForObject(SERVER+"hatCapacity",HatCapacitydetail[].class);
+        HatCapacitydetail[] list = restTemplate.getForObject(SERVER+"hatCapacitydetail",HatCapacitydetail[].class);
         List<HatCapacitydetail> hatList= Arrays.asList(list);
         return hatList;
     }
 
     @Override
     public HatCapacitydetail POST_HatCapacitydetail(HatCapacitydetail capacitydetail) {
-        return restTemplate.postForEntity(SERVER+"hatCapacity",capacitydetail,HatCapacitydetail.class).getBody();
+        return restTemplate.postForEntity(SERVER+"hatCapacitydetail",capacitydetail,HatCapacitydetail.class).getBody();
     }
 
     @Override
     public void PUT_HatCapacitydetail(HatCapacitydetail capacitydetail) {
-        restTemplate.put(SERVER+"hatCapacity",capacitydetail,HatCapacitydetail.class);
+        restTemplate.put(SERVER+"hatCapacitydetail",capacitydetail,HatCapacitydetail.class);
     }
 
     @Override

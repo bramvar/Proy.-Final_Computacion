@@ -34,7 +34,7 @@ public class HatCapacityRest {
 
     @PutMapping("/hatCapacitydetail")
     public ResponseEntity updateHatCapacity(@RequestBody HatCapacitydetail hatCapacitydetail){
-        return ResponseEntity.ok(hatCapacityService.saveHatCapacitydetail(hatCapacitydetail));
+        return ResponseEntity.ok(hatCapacityService.editHatCapacitydetail(hatCapacitydetail));
     }
 
 }

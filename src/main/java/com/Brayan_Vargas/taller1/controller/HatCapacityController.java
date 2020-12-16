@@ -34,13 +34,14 @@ public class HatCapacityController {
 
     @GetMapping("/HatCapacitydetail")
     public String indexHatCapacitydetail(Model model){
-        model.addAttribute("HatCapacityDetail", capacityDelegate.GET_HatCapacitydetails());
+        System.out.println("index");
+        model.addAttribute("hatCapacitydetail", capacityDelegate.GET_HatCapacitydetails());
         return "HatCapacitydetail/index";
     }
 
     @GetMapping("/HatCapacitydetail/add")
     public String addHatCapacitydetail(Model model){
-        model.addAttribute("HatCapacityDetail", new HatCapacitydetail());
+        model.addAttribute("hatCapacitydetail", new HatCapacitydetail());
         model.addAttribute("campus",campusDelegate.GET_Campuses());
         return "HatCapacitydetail/add-HatCapacitydetail";
     }
@@ -68,11 +69,11 @@ public class HatCapacityController {
     @GetMapping("/HatCapacitydetail/edit/{id}")
     public String showUpdateHatCapacitydetail(@PathVariable("id") long id, Model model) {
         HatCapacitydetail hatCapacitydetail = capacityDelegate.GET_HatCapacitydetail(id);
-
+        System.out.println(hatCapacitydetail+"controll");
         if (hatCapacitydetail == null)
             throw new IllegalArgumentException("Invalid user Id:" + id);
 
-        model.addAttribute("hatParameter", hatCapacitydetail);
+        model.addAttribute("hatCapacitydetail", hatCapacitydetail);
         model.addAttribute("campus",campusDelegate.GET_Campuses());
 
         return "HatCapacitydetail/update-HatCapacitydetail";
@@ -83,6 +84,7 @@ public class HatCapacityController {
                                      @RequestParam(value = "action", required = true) String action, @Validated HatCapacitydetail hatCapacitydetail,
                                      BindingResult bindingResult, Model model) {
 
+        System.out.println("update1");
         if (action.equals("Cancel")) {
             return "redirect:/frontapi/HatCapacitydetail";
         }
@@ -93,6 +95,7 @@ public class HatCapacityController {
 
         if (action != null && !action.equals("Cancel")) {
             hatCapacitydetail.setCapId(id);
+            System.out.println("update2");
             capacityDelegate.PUT_HatCapacitydetail(hatCapacitydetail);
         }
 
