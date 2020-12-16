@@ -2,11 +2,13 @@ package com.Brayan_Vargas.taller1.dao;
 
 import com.Brayan_Vargas.taller1.model.HatCapacitydetail;
 import com.Brayan_Vargas.taller1.model.HatParameter;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Repository
 public class HatCapacityDAOImp implements HatCapacityDAO{
 
     @PersistenceContext
