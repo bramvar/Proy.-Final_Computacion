@@ -34,7 +34,8 @@ public class HatCapacityController {
 
     @GetMapping("/HatCapacitydetail")
     public String indexHatCapacitydetail(Model model){
-        model.addAttribute("HatCapacityDetail", capacityDelegate.GET_HatCapacitydetails());
+        System.out.println("index");
+        model.addAttribute("hatCapacitydetail", capacityDelegate.GET_HatCapacitydetails());
         return "HatCapacitydetail/index";
     }
 
