@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface HatCapacityService {
 
-    public HatCapacitydetail saveHatParameter(HatCapacitydetail capacity);
-    public HatCapacitydetail editHatParameter(HatCapacitydetail capacity);
-    public HatCapacitydetail getHatParameter(long id);
+    public HatCapacitydetail saveHatCapacitydetail(HatCapacitydetail capacity);
+    public HatCapacitydetail editHatCapacitydetail(HatCapacitydetail capacity);
+    public HatCapacitydetail getHatCapacitydetail(long id);
     public List<HatCapacitydetail> findAll();
     public void delete(HatCapacitydetail capacity);
 

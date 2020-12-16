@@ -9,17 +9,17 @@ public class HatCapacityServiceImp implements HatCapacityService{
 
 
     @Override
-    public HatCapacitydetail saveHatParameter(HatCapacitydetail capacity) {
+    public HatCapacitydetail saveHatCapacitydetail(HatCapacitydetail capacity) {
         return null;
     }
 
     @Override
-    public HatCapacitydetail editHatParameter(HatCapacitydetail capacity) {
+    public HatCapacitydetail editHatCapacitydetail(HatCapacitydetail capacity) {
         return null;
     }
 
     @Override
-    public HatCapacitydetail getHatParameter(long id) {
+    public HatCapacitydetail getHatCapacitydetail(long id) {
         return null;
     }
 
