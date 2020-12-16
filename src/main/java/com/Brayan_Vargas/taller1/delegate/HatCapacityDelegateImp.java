@@ -27,7 +27,7 @@ public class HatCapacityDelegateImp implements HatCapacityDelegate{
     }
 
     @Override
-    public Iterable<HatCapacitydetail> GET_HatCapacitydetail() {
+    public Iterable<HatCapacitydetail> GET_HatCapacitydetails() {
         HatCapacitydetail[] list = restTemplate.getForObject(SERVER+"hatCapacity",HatCapacitydetail[].class);
         List<HatCapacitydetail> hatList= Arrays.asList(list);
         return hatList;

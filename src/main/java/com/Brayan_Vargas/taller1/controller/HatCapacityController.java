@@ -1,8 +1,11 @@
 package com.Brayan_Vargas.taller1.controller;
 
 import com.Brayan_Vargas.taller1.delegate.CampusDelegate;
+import com.Brayan_Vargas.taller1.delegate.HatCapacityDelegate;
 import com.Brayan_Vargas.taller1.delegate.PhysicalSpaceDelegate;
 import com.Brayan_Vargas.taller1.delegate.PhysicalSpaceTypeDelegate;
+import com.Brayan_Vargas.taller1.model.HatCapacitydetail;
+import com.Brayan_Vargas.taller1.model.HatParameter;
 import com.Brayan_Vargas.taller1.model.Physicalspace;
 import com.Brayan_Vargas.taller1.validation.newPhysicalSpace;
 import javassist.NotFoundException;
@@ -17,121 +20,83 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/frontapi")
 public class HatCapacityController {
 
-    PhysicalSpaceDelegate spaceDelegate;
+    HatCapacityDelegate capacityDelegate;
     CampusDelegate campusDelegate;
-    PhysicalSpaceTypeDelegate typeDelegate;
+
 
 
     @Autowired
-    public HatCapacityController(PhysicalSpaceDelegate spaceDelegate, CampusDelegate campusDelegate, PhysicalSpaceTypeDelegate typeDelegate) {
-        this.spaceDelegate = spaceDelegate;
+    public HatCapacityController(HatCapacityDelegate capacityDelegate, CampusDelegate campusDelegate) {
+        this.capacityDelegate = capacityDelegate;
         this.campusDelegate = campusDelegate;
-        this.typeDelegate = typeDelegate;
+
     }
 
-    @GetMapping("/PhysicalSpace/")
-    public String indexPhysicalSpace(Model model){
-        model.addAttribute("physicalSpaces", spaceDelegate.GET_Spaces());
-        return "PhysicalSpace/index";
+    @GetMapping("/HatCapacitydetail")
+    public String indexHatCapacitydetail(Model model){
+        model.addAttribute("HatCapacityDetail", capacityDelegate.GET_HatCapacitydetails());
+        return "HatCapacitydetail/index";
     }
 
-    @GetMapping("/PhysicalSpace/add")
-    public String addPhysicalSpace(Model model){
-        model.addAttribute("physicalspace", new Physicalspace());
-        model.addAttribute("physicalSpaceTypes", typeDelegate.GET_Types());
-        model.addAttribute("campuses", campusDelegate.GET_Campuses());
-        return "PhysicalSpace/add-physicalSpace";
+    @GetMapping("/HatCapacitydetail/add")
+    public String addHatCapacitydetail(Model model){
+        model.addAttribute("HatCapacityDetail", new HatCapacitydetail());
+        model.addAttribute("campus",campusDelegate.GET_Campuses());
+        return "HatCapacitydetail/add-HatCapacitydetail";
     }
 
-    @PostMapping("/PhysicalSpace/add")
-    public String savePhysicalSpace(@Validated(newPhysicalSpace.class) Physicalspace physicalspace, BindingResult bindingResult,
-                                    @RequestParam(value = "action", required = true) String action, Model model) {
+    @PostMapping("/HatCapacitydetail/add")
+    public String saveHatCapacitydetail(@Validated HatCapacitydetail hatCapacitydetail, BindingResult bindingResult,
+                                   @RequestParam(value = "action", required = true) String action, Model model) {
 
         if(action.equals("Cancel"))
-            return "redirect:/frontapi/PhysicalSpace/";
+            return "redirect:/frontapi/HatCapacitydetail";
 
         if (bindingResult.hasErrors()) {
 
-            model.addAttribute("physpcName", physicalspace.getPhyspcName());
-            model.addAttribute("PhyspcExtid", physicalspace.getPhyspcExtid());
-            model.addAttribute("campuses", campusDelegate.GET_Campuses());
-            model.addAttribute("physicalSpaceTypes", typeDelegate.GET_Types());
-
-            return "PhysicalSpace/add-physicalSpace";
+            return "HatCapacitydetail/add-HatCapacitydetail";
         }
 
         else if (!action.equals("Cancel")) {
-            spaceDelegate.POST_Space(physicalspace);
+            //institutionService.saveInstitution(institution);
+            capacityDelegate.POST_HatCapacitydetail(hatCapacitydetail);
         }
 
-        return "redirect:/frontapi/PhysicalSpace/";
+        return "redirect:/frontapi/HatCapacitydetail";
     }
 
-    @GetMapping("/PhysicalSpace/edit/{id}")
-    public String showUpdatePhysicalSpace(@PathVariable("id") long id, Model model) {
-        Physicalspace physicalspace = spaceDelegate.GET_Space(id);
+    @GetMapping("/HatCapacitydetail/edit/{id}")
+    public String showUpdateHatCapacitydetail(@PathVariable("id") long id, Model model) {
+        HatCapacitydetail hatCapacitydetail = capacityDelegate.GET_HatCapacitydetail(id);
 
-        if (physicalspace == null)
+        if (hatCapacitydetail == null)
             throw new IllegalArgumentException("Invalid user Id:" + id);
 
-        model.addAttribute("physicalspace", physicalspace);
-        model.addAttribute("physicalSpaceTypes", typeDelegate.GET_Types());
-        model.addAttribute("campuses", campusDelegate.GET_Campuses());
+        model.addAttribute("hatParameter", hatCapacitydetail);
+        model.addAttribute("campus",campusDelegate.GET_Campuses());
 
-        return "PhysicalSpace/update-physicalSpace";
+        return "HatCapacitydetail/update-HatCapacitydetail";
     }
 
-    @PostMapping("/PhysicalSpace/edit/{id}")
-    public String updatePhysicalSpaceType(@PathVariable("id") long id,
-                                          @RequestParam(value = "action", required = true) String action,@Validated(newPhysicalSpace.class)  Physicalspace physicalspace,
-                                          BindingResult bindingResult, Model model) {
+    @PostMapping("/HatCapacitydetail/edit/{id}")
+    public String updateHatCapacitydetail(@PathVariable("id") long id,
+                                     @RequestParam(value = "action", required = true) String action, @Validated HatCapacitydetail hatCapacitydetail,
+                                     BindingResult bindingResult, Model model) {
 
-        if (action.equals("Cancel"))
-            return "redirect:/frontapi/PhysicalSpace/";
-
+        if (action.equals("Cancel")) {
+            return "redirect:/frontapi/HatCapacitydetail";
+        }
 
         if (bindingResult.hasErrors()) {
-
-            model.addAttribute("physpcName", physicalspace.getPhyspcName());
-            model.addAttribute("PhyspcExtid", physicalspace.getPhyspcExtid());
-            model.addAttribute("campuses", campusDelegate.GET_Campuses());
-            model.addAttribute("physicalSpaceTypes", typeDelegate.GET_Types());
-
-            return "PhysicalSpace/update-physicalSpace";
+            return "HatParameter/update-HatCapacitydetail";
         }
 
         if (action != null && !action.equals("Cancel")) {
-            physicalspace.setPhyspcId(id);
-            spaceDelegate.PUT_Space(physicalspace);
-        }
-        return "redirect:/frontapi/PhysicalSpaceType/";
-    }
-
-    @GetMapping("/PhysicalSpace/consult")
-    public String consultPhysicalSpace(Model model) {
-
-        model.addAttribute("physicalspace", new Physicalspace());
-        return "PhysicalSpace/consult-physicalSpace";
-    }
-
-    @PostMapping("/PhysicalSpace/consult")
-    public String showConsultPhysicalSpace(@ModelAttribute Physicalspace physicalspace, Model model) throws NotFoundException {
-
-        Physicalspace physpc = spaceDelegate.GET_Space(physicalspace.getPhyspcId());
-        if (physpc == null) {
-            throw new NotFoundException(" NO ENCONTRADO");
+            hatCapacitydetail.setCapId(id);
+            capacityDelegate.PUT_HatCapacitydetail(hatCapacitydetail);
         }
 
-        model.addAttribute("physicalspace",physpc);
-
-        return "PhysicalSpace/update-physicalSpace";
-    }
-
-    @GetMapping("/PhysicalSpace/del/{id}")
-    public String deleteSpace(@PathVariable("id") long id) {
-        Physicalspace space = spaceDelegate.GET_Space(id);
-        spaceDelegate.DELETE_Space(space);
-        return "redirect:/frontapi/PhysicalSpace/";
+        return "redirect:/frontapi/HatCapacitydetail";
     }
 
 }
