@@ -176,9 +176,14 @@ public class InstitutionController {
                 Iterable<Physicalspace> spaces = spaceDelegate.GET_Spaces();
 
                 for (Physicalspace physicalspace : spaces) {
-                    if (physicalspace.getInstitutioncampus().getInstcamId() == id) {
-                        spaceDelegate.DELETE_Space(physicalspace);
+                    try {
+                        if (physicalspace.getInstitutioncampus().getInstcamId() == id) {
+                            spaceDelegate.DELETE_Space(physicalspace);
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
+
                 }
 
                 campusDelegate.DELETE_Campus(institutioncampus);

@@ -145,9 +145,14 @@ public class PhysicalSpaceTypeController {
         Iterable<Physicalspace> spaces =spaceDelegate.GET_Spaces();
 
         for (Physicalspace physicalspace : spaces) {
-            if (physicalspace.getInstitutioncampus().getInstcamId()==id) {
-                spaceDelegate.DELETE_Space(physicalspace);
+            try {
+                if (physicalspace.getInstitutioncampus().getInstcamId()==id) {
+                    spaceDelegate.DELETE_Space(physicalspace);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
             }
+
         }
 
         typeDelegate.DELETE_Type(type);
