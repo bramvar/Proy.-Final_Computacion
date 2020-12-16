@@ -20,8 +20,8 @@ public class Physicalspace implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	//@SequenceGenerator(name="PHYSICALSPACE_PHYSPCID_GENERATOR", sequenceName="PHYSICALSPACE_SEQ")
-	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PHYSICALSPACE_PHYSPCID_GENERATOR")
+	@SequenceGenerator(name="PHYSICALSPACE_PHYSPCID_GENERATOR", sequenceName="PHYSICALSPACE_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PHYSICALSPACE_PHYSPCID_GENERATOR")
 	@Column(name="PHYSPC_ID")
 	private long physpcId;
 
@@ -38,7 +38,6 @@ public class Physicalspace implements Serializable {
 
 	//bi-directional many-to-one association to com.example.taller1.model.Communityinstance
 	@OneToMany(mappedBy="physicalspace")
-	@JsonIgnore
 	private List<Communityinstance> communityinstances;
 
 	//bi-directional many-to-one association to com.example.taller1.model.HatCapacitydetail
@@ -49,13 +48,13 @@ public class Physicalspace implements Serializable {
 	//bi-directional many-to-one association to com.example.taller1.model.Institutioncampus
 	@NotNull(groups = newPhysicalSpace.class)
 	@ManyToOne
-	@JsonIgnore
+
 	@JoinColumn(name="INSTCAM_INSTCAM_ID")
 	private Institutioncampus institutioncampus;
 
 	//bi-directional many-to-one association to com.example.taller1.model.Physicalspace
 	@ManyToOne
-	@JsonIgnore
+
 	@JoinColumn(name="PHYSPC_PHYSPC_IDPARENT")
 	private Physicalspace physicalspace;
 
@@ -67,7 +66,7 @@ public class Physicalspace implements Serializable {
 	//bi-directional many-to-one association to com.example.taller1.model.Physicalspacetype
 	@NotNull(groups = newPhysicalSpace.class)
 	@ManyToOne
-	@JsonIgnore
+
 	@JoinColumn(name="PHYSPCTYPE_PHYSPCTYPE_ID")
 	private Physicalspacetype physicalspacetype;
 

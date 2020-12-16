@@ -3,13 +3,7 @@ package com.Brayan_Vargas.taller1.controller;
 import com.Brayan_Vargas.taller1.delegate.CampusDelegate;
 import com.Brayan_Vargas.taller1.delegate.PhysicalSpaceDelegate;
 import com.Brayan_Vargas.taller1.delegate.PhysicalSpaceTypeDelegate;
-import com.Brayan_Vargas.taller1.model.Institution;
 import com.Brayan_Vargas.taller1.model.Physicalspace;
-import com.Brayan_Vargas.taller1.model.Physicalspacetype;
-import com.Brayan_Vargas.taller1.service.CampusService;
-import com.Brayan_Vargas.taller1.service.InstitutionService;
-import com.Brayan_Vargas.taller1.service.PhysicalspaceService;
-import com.Brayan_Vargas.taller1.service.PhysicalspaceTypeService;
 import com.Brayan_Vargas.taller1.validation.newPhysicalSpace;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.Optional;
-
 @Controller
 @RequestMapping("/frontapi")
-public class PhysicalSpaceController {
-
-    //PhysicalspaceService physicalspaceService;
-    //CampusService campusService;
-    //PhysicalspaceTypeService physicalspaceTypeService;
+public class HatCapacityController {
 
     PhysicalSpaceDelegate spaceDelegate;
     CampusDelegate campusDelegate;
@@ -36,7 +23,7 @@ public class PhysicalSpaceController {
 
 
     @Autowired
-    public PhysicalSpaceController(PhysicalSpaceDelegate spaceDelegate, CampusDelegate campusDelegate, PhysicalSpaceTypeDelegate typeDelegate) {
+    public HatCapacityController(PhysicalSpaceDelegate spaceDelegate, CampusDelegate campusDelegate, PhysicalSpaceTypeDelegate typeDelegate) {
         this.spaceDelegate = spaceDelegate;
         this.campusDelegate = campusDelegate;
         this.typeDelegate = typeDelegate;

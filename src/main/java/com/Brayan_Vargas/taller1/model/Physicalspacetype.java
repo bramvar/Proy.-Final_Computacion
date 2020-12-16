@@ -20,8 +20,8 @@ public class Physicalspacetype implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	//@SequenceGenerator(name="PHYSICALSPACETYPE_PHYSPCTYPEID_GENERATOR", sequenceName="PHYSICALSPACETYPE_SEQ")
-	//@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PHYSICALSPACETYPE_PHYSPCTYPEID_GENERATOR")
+	@SequenceGenerator(name="PHYSICALSPACETYPE_PHYSPCTYPEID_GENERATOR", sequenceName="PHYSICALSPACETYPE_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PHYSICALSPACETYPE_PHYSPCTYPEID_GENERATOR")
 	@Column(name="PHYSPCTYPE_ID")
 	private long physpctypeId;
 
